@@ -1,0 +1,106 @@
+<!--
+<script>
+    function greet() {
+        console.log("Welcome to Functions");
+    }
+    console.log(greet);  // function defination calling.
+    greet();             // calling the function.
+</script>-->
+
+
+<!--
+<script>
+    function greet() {
+        return "Welcome to Functions !";
+    }
+    var result = greet();
+    console.log(result);
+</script>-->
+
+
+<!--<script>
+    function fun_one(){
+        return fun_two;
+    }
+
+    function fun_two(){
+       return "I am from fun_two";
+    }
+
+    var def = fun_one();
+    var result = def();
+    console.log(result);
+
+    document.write("<h1>"+fun_one()()+"</h1>");
+</script>-->
+
+
+<!--<script>
+    function fun_one(arg1,arg2,arg3) {
+        return arg1()+"<==>"+arg2()+"<==>"+arg3();
+    }
+    function fun_two(){
+        return "Angular4";
+    }
+    function fun_three(){
+        return "NodeJS";
+    }
+    function fun_four() {
+        return "MongoDB";
+    }
+    var result = fun_one(fun_two,fun_three,fun_four);
+    document.write("<h1>"+result+"</h1>");
+</script>-->
+
+<script>
+    
+    function fun_one(arg1) {
+        //arg1 - fun_two defination.
+        document.write("<h1>"+arg1+"</h1>");
+
+        arg1(); //calling the fun_two
+        document.write(arg1());
+
+        document.write("<h1 style=color:red>"+arg1()()+"</h1>");
+    }
+    
+    function fun_two(){
+        return fun_three;
+    }
+    
+    function fun_three() {
+        return "I am from fun_three !";
+    }
+
+    fun_one(fun_two);
+    
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

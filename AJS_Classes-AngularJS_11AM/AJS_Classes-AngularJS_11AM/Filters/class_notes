@@ -1,0 +1,138 @@
+Filters:
+--------
+    - Filters in angularjs used to format the data accroding to
+      application requirement.
+
+    - we have two types of filters.
+
+        1. Predefined filters
+        2. custom filters
+
+Predefined filters
+------------------
+    - the filters given by the framework called as predefined filters.
+1. uppercase
+    - this filter used to convert the lower case characters
+      to uppercase characters.
+
+Ex.
+    $scope.var_one="hello....!";
+    {{var_one | uppercase}}   //HELLO....!
+
+
+2. lowercase
+     - this filter used to convert the uppercase characters to
+       lowercase characters.
+
+Ex.
+    $scope.var_two="HELLO....!"
+    {{var_two | lowercase}} //hello...!
+
+
+3. currency
+    - this filter used to add the "$" symbol to the numerical values.
+Ex.
+    $scope.var_three=100;
+    {{var_three | currency}}      // $100.00
+    {{var_three | currency:"$":3}}// $100.000
+
+
+4. date
+    - this filter used to format the date accroding to application
+      requirement.
+
+Ex.
+        $scope.var_four = new Date();
+
+        {{var_four | date:'dd-MM-yy'}}<br>     //23-09-17
+        {{var_four | date:'dd-MMM-yy'}}<br>    //23-Sep-17
+        {{var_four | date:'short'}}<br>        //9/23/17 12:24 PM
+        {{var_four | date:'medium'}}<br>       //Sep 23, 2017 12:24:34 PM
+        {{var_four | date:'fullDate'}}<br>     //Saturday, September 23, 2017
+        {{var_four | date:'shortTime'}}        //12:24 PM
+
+5. orderBy
+    - this filter used to arrange the data either assending order
+      or decending order.
+
+6. limitTo
+    - this filter used to display the required number of records from an array.
+
+7. filter
+     - this filter used to search the whole array based on user input.
+
+
+Ex.
+    $scope.var_five = [
+                    {'id':1,'name':'Hello_1','age':20},
+                    {'id':5,'name':'Hello_5','age':28},
+                    {'id':2,'name':'Hello_2','age':22},
+                    {'id':4,'name':'Hello_4','age':26},
+                    {'id':3,'name':'Hello_3','age':24}
+    ];
+
+        <input type="text" ng-model="search"> <br><br>
+        <table border="1">
+            <tr>
+                <th>id</th>
+                <th>name</th>
+                <th>age</th>
+            </tr>
+
+            <tr ng-repeat="x in var_five | orderBy:'id' | limitTo:3 |
+                                                            filter:search">
+                <td>{{x.id}}</td>
+                <td>{{x.name}}</td>
+                <td>{{x.age}}</td>
+            </tr>
+        </table>
+
+
+8. json
+    - this filter used to convert the json objects to json string.
+
+
+Custom Filters:
+---------------
+    - creating our own filters based on application requirement called as
+      Custom Filters.
+
+{{"hello" | reverse}}   //olleh
+app.filter("reverse",reverse);
+function reverse(){
+    return function(arg1){
+        var data="";
+        for(var i=0;i<arg1.length;i++){
+            data=arg1[i]+data;
+        }
+        return data;
+    }
+}
+
+----------------------------------------
+{{100 | my_currency:"&#8377;":true}}
+{{200 | my_currency:"&#163;":false}}
+app.filter("my_currency",my_currency);
+function my_currency(){
+    return function(amount,symbol,position){
+        if(position){
+           return symbol+" "+amount;
+        }else{
+            return amount+" "+symbol;
+        }
+    }
+}
+------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+

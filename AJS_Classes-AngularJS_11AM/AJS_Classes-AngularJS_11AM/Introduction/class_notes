@@ -1,0 +1,727 @@
+Introduction:
+
+    - bower.
+
+    - gulp
+
+    - what is AngularJS
+
+    - Advantages Of AngularJS
+
+    - Disadvantages Of AngularJS
+
+    - key features of AngularJS
+
+    - Comparision Of AngularJS - Angular4
+
+                     AngularJS - reactJS
+
+                     AngularJS - NodeJS
+
+    - Interview Q&A
+
+bower:
+-----
+    - bower is the automation tool used to download the required
+      dependencies to develop web application.
+
+    - bower is the automation tool provided by nodejs.
+
+installation of bower:
+----------------------
+>npm install -g bower
+
+[Note : automatically bower will install with the following
+        version
+
+        -- bower@1.8.0
+]
+
+
+bower component:
+----------------
+    - "bower.json" file called as bower component.
+
+    - this component used to maintain the required dependencies
+      to develop web application.
+
+bower.json
+----------
+{
+    "name":"nareshit",
+    "dependencies":{
+        "angular":"latest",
+        "bootstrap":"latest"
+            --
+            --
+            --
+    }
+}
+
+execution of bower component:
+-----------------------------
+>bower install
+
+installation of dependencies dynamically
+----------------------------------------
+>bower install bootstrap --save
+
+uninstall the dependencies dynamically
+--------------------------------------
+>bower uninstall angular --save
+
+know the available dependencies in project
+------------------------------------------
+>bower list
+
+
+
+angular framework path given by bower:
+--------------------------------------
+> bower_components/angular/angular.min.js
+
+
+bootstrap framework path given by bower:
+----------------------------------------
+> bower_components/bootstrap/dist/css/bootstrap.min.css
+
+
+jQuery path given by bower:
+---------------------------
+> bower_components/jquery/dist/jquery.min.js
+
+Gulp:
+----
+    - Gulp is the Production Based tool.
+
+    - Gulp is the Node Based Platform.
+
+    - Gulp used to prepare the production build.
+
+
+Advantages Of Gulp:
+-------------------
+
+1. concat the files.
+
+2. minify the js files (compress / crush)
+
+3. minifies the html files
+
+4. minifies the css files
+
+5. deletes the duplicate code
+
+6. disable the log.
+
+7. run the bower.
+
+8. startup the servers.
+
+9. watching the front end changes (HTML,CSS,JavaScript,....)
+
+10. live reloading the browsers.
+
+
+modules in gulp:
+---------------
+    module : collection of predefined javascript classes called as module
+
+1. gulp-concat
+    - this module used to concat the files.
+
+2. gulp-uglify
+    - this module used to minify the js files.
+
+3. gulp-minify-html
+    - this module used to minify the html files.
+
+4. gulp-minify-css
+    - this module used to minify the css files.
+
+5. gulp-bower
+    - this module used to install the bower.
+
+6. gulp-open
+    - this module used to launch the browsers.
+
+7. gulp
+    - this module represents the gulp tool.
+
+[Note : we can download the above modules by using "package.json" file]
+
+[Note : we can install the package.json file by using "npm install" command]
+
+
+Gulp installation
+-----------------
+>npm install -g gulp
+[Note : automatically gulp@3.9.1 version will be installed]
+
+
+Example:
+
+Step 1:
+    Create the directory structure for GulpDemo
+
+
+-------------------
+GulpDemo                (folder)
+    devEnv              (folder)
+        html            (folder)
+            sample_one.html
+            sample_two.html
+        css             (folder)
+            style_one.css
+            style_two.css
+        js              (folder)
+            sample_one.js
+            sample_two.js
+        bower.json
+        index.html
+    prodEnv         (Places the Gulp Result Files)
+    ----------------------------------------
+
+Step 2:
+    download the required number of modules to prepare gulp script.
+
+package.json
+------------
+{
+    "name":"nareshit",
+    "version":"1.0.0",
+    "description":"test gulp project",
+    "dependencies":{
+        "gulp-concat":"latest",
+        "gulp-uglify":"latest",
+        "gulp-minify-html":"latest",
+        "gulp-minify-css":"latest",
+        "gulp":"latest",
+        "gulp-bower":"latest",
+        "gulp-open":"latest"
+    }
+}
+
+>npm install
+
+[Note: automatically all the modules downloads to "node_modules" folder]
+
+
+Step 3:
+    prepare the Gulp Script
+
+Gulpfile.js
+-----------
+//import modules.
+var gulp = require("gulp");
+var concat = require("gulp-concat");
+var uglify = require("gulp-uglify");
+var minifyHTML = require("gulp-minify-html");
+var minifyCSS = require("gulp-minify-css");
+var bower = require("gulp-bower");
+var open = require("gulp-open");
+
+//require() is the "predefined function of gulp" used
+  to import the modules.
+
+
+
+//create the task
+gulp.task("minify_html",function(){
+    gulp.src("./devEnv/html/*.html")
+        .pipe(concat("final.min.html"))
+        .pipe(minifyHTML())
+        .pipe(gulp.dest("./prodEnv/html"));
+});
+
+
+//create the task
+gulp.task("minify_css",function(){
+    gulp.src("./devEnv/css/*.css")
+        .pipe(concat("final.min.css"))
+        .pipe(minifyCSS())
+        .pipe(gulp.dest("./prodEnv/css"));
+});
+
+//create the task
+gulp.task("minify_js",function(){
+    gulp.src("./devEnv/js/*.js")
+        .pipe(concat("final.min.js"))
+        .pipe(uglify())
+        .pipe(gulp.dest("./prodEnv/js"));
+});
+
+
+//create the task
+gulp.task("bower",function(){
+    return bower();    // internally it will execute "bower install" command.
+});
+
+
+//create the task
+gulp.task("open",function(){
+    gulp.src("./index.html").pipe(open());   //index.html file launches in default browser.
+});
+
+
+//default task
+gulp.task("default",["minify_html",       function(){
+                    "minify_css",
+                    "minify_js",
+                    "bower",
+                    "open"],
+
+
+});
+
+Step 4:
+    Execute the Gulp Script
+
+>gulp minify_html
+
+>gulp minify_css
+
+>gulp minify_js
+
+>gulp bower
+
+>gulp open
+
+>gulp
+
+AngularJS
+---------
+    - AngularJS is a Client Side JavaScript Framework.
+
+    - AngularJS Follows the MVC Design Pattern.
+
+        M - Model
+            - javascript variables called as model in angularjs.
+
+            Ex.
+                var data = "data from database soon...!";
+
+        [Note : where "data" variable called as model in angularjs]
+
+
+        V - view
+
+            - we can use html,html5 or Jade as the View in angularjs.
+
+        C - Controller
+
+            - javascript functions called as controllers in
+              angularjs.
+
+            Ex.
+                function my_fun(){
+                    //Business Logic
+                }
+        [Note : where "my_fun()" called as controller in angularjs]
+
+    - angularjs released by the google.
+
+
+Advantages of AngularJS:
+-----------------------
+
+1. AngularJS supports modules.
+
+    Module : collection of predefined classes implementations called as
+             module.
+
+
+    1. ngAnimate
+        - this module used to implement the animations in angular
+          applications.
+
+    2. ngStorage
+        - this module used to work with the Storages.
+        - AngularJS supports two types of storages.
+            1. localStorage
+            2. sessionStorage
+
+        localStorage : as a developer we must destroy the
+                       localStorage explicitely.
+
+        sessionStorage: when ever we "close the browser" /
+                        "opens the new tab" automatically we will lost
+                        the data.
+
+    3. ngMessages
+        - this module used to handle the client side form validations.
+
+    4. ngRoute
+        - loading the target template to source template in single page
+          application called as routing.
+
+        - we can implement the routing in single page application
+          by using ngRoute module.
+
+        - ngRoute module is the native module.
+
+        - now a days we are not using using ngRoute module while
+          implementing the single page applications.
+
+        - ngRoute module is the deprecated module.
+
+
+    5. ui.router
+        - this module used to implement the routing in single page
+          application.
+
+        - ui.router module is the 3rd party module.
+
+        - now a days all most all the projects using "ui.router"
+          module because of it's advantages.
+
+Ex.
+
+    implement the angular application with the following features
+
+    1. Animations Support
+
+    2. Validations Support
+
+    3. SPA - ui.router
+
+    4. Storages Support.
+
+index.html
+----------
+<!DOCTYPE html>
+<html ng-app="app">
+
+    //We can Develop Animations, Routing , Validations and
+      Storages
+
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script>
+        var app = angular.module("app",["ngAnimate",
+                                        "ngMessages",
+                                        "ngStorage",
+                                        "ui.router"]);
+    </script>
+</html>
+
+
+1. ng-app is the predefined directive used to assign the logical
+   name for the web application.
+
+   Ex.
+    ng-app="app"
+
+2. where "app" is the logical name of web application.
+
+
+3. "angular" is the predefined class in "angular.min.js" file.
+
+4. "module" is the predefined function in angular class and taking
+    two parameters
+
+        1. logical name of web application
+
+        2. array of dependencies.
+
+5. "module" will return javascript object and this object used to
+    implement the controllers, services, filters, directives...
+
+    Ex.
+        var app = angular.module("app",[]);
+
+
+2. by using angularjs, we can directly work with the HTML DOM.
+--------------------------------------------------------------
+
+    - DOM Stands for Document Object Model.
+
+
+Ex. Copy the data from "one div" to "another div" by using HTML &
+    JavaScript.
+
+index.html
+----------
+
+<html>
+    <div id="div_one">Hello</div>
+    <div id="div_two"></div>
+    <script>
+        document.getElementById("div_two").innerHTML =
+        document.getElementById("div_one").value;
+    </script>
+</html>
+
+
+[Note : as a html & javascript developer we must dependent
+        on javascript to manipulate the DOM]
+
+
+Ex.copy the data from "one div" to "another div" by using "angularjs".
+
+index.html
+----------
+<html ng-app>
+    <div ng-model="div_one">Hello</div>
+    <div ng-bind="div_one"></div>
+    <script src="bower_components/angular/angular.min.js"></script>
+</html>
+
+1. in the above application we have following predefined directives
+
+    1. ng-app
+    2. ng-model
+    3. ng-bind
+
+
+2. angular framework starts the execution from "ng-app" directive.
+
+
+3. "ng-model" directive internally creates the object in heap memory
+    with application data.
+
+
+4. "ng-bind" directive binds the application data (model data) to the
+    view.
+
+
+[Note : as a angular developer we can directly manipulate the dom
+        without depending on javascript]
+
+
+
+3. angularjs supports two way data binding.
+    Automatic Data Syncronisation between model and view with the supervision of
+    controller called as Two Way Data Binding.
+
+Ex.
+    in the above diagram we have following server calls.
+
+1. http get request
+    - used to fetch the data from server.
+    - server internally fetches from database.
+
+2. http delete request
+    - used to delete a perticular resource in "database" with the help of "server"
+
+3. ajax request
+    - used to synchronize the the data between database and view.
+
+
+[Note : as a programming languages developer we must make above "three server calls" to meet
+        application requirement.
+
+        because programming languages supports "one way data binding" ]
+
+
+[Note : as a angular developer(Angular1.X , Angular2.X & Angular4.x) , we can make only
+        "two server calls" to meet application requirement because of "two way data binding"]
+
+
+Explanation :
+    - At the end of "http delete request" (2nd server hit) database will return the
+      "Success" to controller with the help of server and service.
+
+    - when ever controller receives success, modify the model object based on application
+      requirement.
+
+    - because of "two way data binding" view will updated based on model.
+
+
+4. open source code
+
+    - as a angular developer we can customize the angular framework accroding
+      to application requirement.
+
+
+Disadvantages of AngularJS
+--------------------------
+    - understanding the angular applications are difficult because of no coding standards
+      given by vendors.
+
+    - we are missing the secuirity because we are implementing business components
+      at client side by using MVC.
+
+    - client should enable the javascript.
+
+
+key features of angularjs
+-------------------------
+1. single page applications
+    - loading the target templates to source template without refreshing the whole web page
+      called as single page application.
+
+    - by default angularjs supports single page applications.
+
+
+2. routing
+    - loading one template to another template in single page application called as
+      routing.
+
+    - by default angular framework supports routing in single page applications.
+
+
+3. directives
+    - directives in angularjs, enhances the html capabilities.
+
+    - we can customize the directives as per application requirement.
+
+    - we have two types of directives
+
+        1. predefined directives
+
+            Ex.
+                ng-app
+                ng-controller
+                ng-model
+                ng-bind
+                    --
+                    --
+                    --
+
+        2. custom directives
+            Ex.
+                my-app
+                my-dir
+
+
+4. services
+    - services are meant for providing the common business logic to controllers.
+
+    - by using services we can reuse the business logic.
+
+    - we have two types of services.
+
+        1. predefined services
+
+            Ex.
+                $http.
+
+
+        2. custom services
+
+            Ex.
+                my_service.
+
+5. filters
+    - filters are used to format the data accroding
+      to application requirement.
+
+    - we have two types of filters
+
+        1. predefined filters
+            - the filters given by the angular framework called as
+              predefined filters.
+
+            Ex.
+                uppercase
+                lowercase
+                currency
+                orderBy
+                    --
+                    --
+
+        2. custom filters
+            - the filters developed by developer based on application
+              requirement called as custom filter.
+
+        Ex.
+            my_filter
+            reverse
+            my_currency
+                --
+                --
+                --
+
+
+Comparision of AngularJS - Angular2
+-----------------------------------
+
+- the vendor for the angularjs framework is google.
+  the vendor for the angular2&4 is the google with microsoft.
+
+
+
+- by using angularjs, we can create the web applications.
+  by using angular2 & angular4 we can develop web applications as well as
+  mobile applications.
+
+  [Note : with the help of ionic framework only we can create
+          the mobile applications]
+
+  "angular2 (or) angular4 + ionic ==> mobile applications"
+
+
+- we can develop the angular applications by using javascript(1.X)
+  we can develop the angular2/angular4 applications by using typescript
+
+  [Note : typescript is the superset of javascript]
+
+
+- angularjs have a poor performance compared to angular2/angular4.
+  angular2 have a 5X more performance compared to angularjs.
+
+
+- we can directly render the angularjs applications on browser because
+  angularjs internally uses javascript.
+
+  we must convert the typescript to javascript before rendering on browser
+  in angular2/angular4 application
+  converting the typescript to javascript called as transpilation.
+  we can perform the transpilation with the help of "tsc" compiler
+
+
+- javascript is the interpreted based language.
+  typescript is the compiler based language.
+
+
+
+differences between angular2 to the angular4:
+---------------------------------------------
+
+    - angular2 have the less secuirity compared to angular4
+      in angular4 data will be encrypted so we can achieve the
+      more secuirity.
+
+    - angular4 have more performance compared to angular2.
+
+    - angular4 modifies the directives to achieve the more performance
+
+    - angular4 easy compared to angular2.
+
+
+differences between angularjs to nodejs
+---------------------------------------
+    - angularjs is the front-end technology.
+      nodejs is the server side technology.
+
+    - internally angularjs uses to javascript to develop web applications
+      internally nodejs uses javascript to develop server applications.
+
+
+    - node applications can provide the services to (db data) to
+      angular1.x , angular2.x , angular4.x and reactjs....
+
+
+differences between angularjs to reactjs
+----------------------------------------
+
+- angularjs is the client side javascript mvc framework.
+  reactjs is the client side javascript library.
+
+- angular have the poor performance while working with the
+  data structures
+
+  react have the good performance while working with the data structures.
+
+
+
+
+
+
+
+
+
+
+
+
+

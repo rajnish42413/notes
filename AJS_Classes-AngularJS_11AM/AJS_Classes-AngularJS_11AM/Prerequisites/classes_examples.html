@@ -1,0 +1,103 @@
+<!--
+<script type="text/javascript">
+
+    function class_one() {
+        this.my_var = "Welcome to Classes !";
+
+        this.my_fun = function () {
+            return this.my_var;
+        };
+    }
+
+
+    console.log(new class_one().my_fun());
+
+
+</script>-->
+
+
+
+
+
+
+<!--<script type="text/javascript">
+    
+    function class_one(arg1,arg2) {
+        this.result = arg1+arg2;
+    }
+
+    function class_two() {
+        this.fun_two = function () {
+            return 100;
+        };
+    };
+
+    function class_three() {
+        this.fun_three = function () {
+            return 200;
+        };
+    };
+
+
+    var obj2 = new class_two();
+    var value_one = obj2.fun_two();
+
+    var obj3 = new class_three();
+    var value_two = obj3.fun_three();
+
+    var obj1 = new class_one(value_one,value_two);
+    document.write(obj1.result);
+
+
+    
+</script>-->
+
+
+<script>
+
+    function class_one(){
+        this.fun_one = function () {
+            return new class_two();
+        };
+    };
+
+    function class_two(){
+        this.fun_two = function () {
+            return{
+                "emp":[
+                        {"e_id":111,"e_name":"Hello_1","e_sal":50000}
+                ]
+            };
+        };
+    };
+
+
+    //create the class_one object
+    var obj_one = new class_one();
+
+    //create the class_two object.
+    var obj_two = obj_one.fun_one();
+
+    //call the fun_two (class_two)
+    var json_obj = obj_two.fun_two();
+    document.write("<h1>"+
+        json_obj.emp[0].e_id+"...."+
+        json_obj.emp[0].e_name+"..."+
+        json_obj.emp[0].e_sal+"</h1>");
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

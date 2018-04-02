@@ -1,0 +1,8 @@
+{
+  "name": "Read_MySQLData",
+  "version": "0.0.1",
+  "dependencies": {
+    "express": "^4.15.4",
+    "mysql": "^2.14.1"
+  }
+}

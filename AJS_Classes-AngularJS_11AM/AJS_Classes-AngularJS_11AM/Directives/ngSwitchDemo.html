@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" ng-app ng-init="my_number=0">
+
+    <input type="number" ng-model="my_number"><br><br>
+    <div ng-switch="my_number">
+        <div ng-switch-when="1" class="btn btn-primary"
+                                ng-bind="my_number"></div>
+        <div ng-switch-when="2" class="btn btn-success" ng-bind="my_number"></div>
+        <div ng-switch-when="3" class="btn btn-danger" ng-bind="my_number"></div>
+        <div ng-switch-default  class="btn btn-default" ng-bind="my_number"></div>
+    </div>
+
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <script src="bower_components/angular/angular.min.js"></script>
+</html>

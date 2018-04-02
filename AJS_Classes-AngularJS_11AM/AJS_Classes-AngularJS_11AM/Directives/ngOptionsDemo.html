@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app" ng-controller="ctrl">
+
+    <select ng-model="model_one" ng-options="x.p_name as x.p_id for x in array_one">
+        <option value="">--Select ID--</option>
+    </select>
+    <h1>{{model_one}}</h1>
+
+    <select ng-model="model_two" ng-options="x.p_id as x.p_name for x in array_one">
+        <option value="">--Choose Product--</option>
+    </select>
+    <h1>{{model_two}}</h1>
+
+    <select ng-model="model_three" ng-options="x.p_id as x.p_id for x in array_one">
+        <option value="">--Choose ID--</option>
+    </select>
+    <h1>{{model_three}}</h1>
+
+    <select ng-model="model_four" ng-options="x.p_name as x.p_name for x in array_one">
+        <option value="">--Choose Product--</option>
+    </select>
+    <h1>{{model_four}}</h1>
+
+    <select ng-model="model_five" ng-options="x as x for x in array_two">
+        <option value="">--Choose Item--</option>
+    </select>
+    <h1>{{model_five}}</h1>
+
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script>
+        var app = angular.module("app",[]);
+
+        app.controller("ctrl",ctrl);
+        function ctrl($scope) {
+            $scope.array_one = [{'p_id':1,'p_name':'laptop'},
+                {'p_id':2,'p_name':'tv'},
+                {'p_id':3,'p_name':'mac book'},
+                {'p_id':4,'p_name':'smart phone'},
+                {'p_id':5,'p_name':'watch'}];
+
+            $scope.array_two = ["Hello_1","Hello_2","Hello_3","Hello_4","Hello_5"];
+        }
+    </script>
+</html>

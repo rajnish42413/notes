@@ -1,0 +1,443 @@
+Step 1:
+    Create the table in mysql database for
+    Authentication.
+
+>create schema poc;
+
+>use poc;    
+
+>create table login_details(uname varchar(20),upwd varchar(20));
+
+>insert into login_details values('admin','admin');
+
+
+Step 2:
+    Create the REST API for login.
+server.js
+---------
+var express = require("express");
+var mysql   = require("mysql");
+var jwt     = require("jwt-simple");
+var bodyparser = require("body-parser");
+var fs = require("fs");
+var mongodb = require("mongodb");
+
+var app = express();
+app.use(express.static(__dirname+"/../POC"));
+var connection = mysql.createConnection({
+    host:"localhost",
+    user:"root",
+    password:"root",
+    database:"poc"
+});
+
+connection.connect();
+var tokensArray=[];
+
+app.post("/login",function(req,res){
+    var uname = req.body.uname;
+    var upwd = req.body.upwd;
+
+    connection.query("select uname from login_details 
+                        where uname='"+uname+"'",
+            function(err,recordsArray,fields){
+                
+                if(recordsArray.length>0){
+                    var token = jwt.encode({'uname':uname},
+                                            'hr@tcs.com');
+                    tokensArray.push(token);
+                    res.send({'login':'success',
+                              'token':token});
+                }else{
+                    res.send({'login':'fail'});
+                }
+    });
+});
+
+
+
+Step 3:
+    create the loginService
+
+-------------------
+POC
+    service
+        loginService.js
+--------------------
+
+loginService.js
+---------------
+app.service("loginService",loginService);
+function loginService($http){
+    this.authenticate = function(obj){
+        return $http.post("http://localhost:8080/login",obj).
+            then(function(posRes){
+                return posRes;
+            },function(errRes){
+                return errRes;
+            });
+    }
+}
+
+
+Step 4:
+    Develop the Single Page Application
+------------
+POC 
+    templates
+        login.html
+        home.html
+
+    controllers
+        loginController.js
+        homeController.js 
+
+    app.js
+    config.js
+    index.html
+    bower.json
+--------------           
+bower.json
+----------
+{
+    "name":"poc",
+    "dependencies":{
+        "angular":"latest",
+        "angular-ui-router":"~0.2.18",
+        "ngstorage":"~0.3.11"
+    }
+}
+>bower install
+
+app.js
+------
+var app = angular.module("app",["ui.router","ngStorage"]);
+
+login.html
+----------
+<form ng-submit="login_details()">
+    <label>Uname.</label>&emsp;&emsp;&emsp;&emsp;
+    <input type="text" ng-model="obj.uname">
+
+    <br><br>
+    <label>Upwd.</label>&emsp;&emsp;&emsp;&emsp;
+    <input type="password" ng-model="obj.upwd">
+
+    <br><br>
+    <input type="submit"></input>
+</form>
+
+home.html
+---------
+<h1>{{var_one}}</h1>
+
+loginController.js
+------------------
+app.controller("loginController",loginController);
+function loginController($scope,
+                         $localStorage,
+                         $location,
+                         loginService){
+     $scope.obj={};
+     $scope.login_details = function(){
+         loginService.authenticate($scope.obj)
+                    .then(function(res){
+            if(res.data.login=="success"){
+                $localStorage.poc = res;
+                $location.path("/home");
+            }else{
+                alert("Invalid Details");
+            }
+         });
+     };                     
+};
+
+homeController.js
+-----------------
+app.controller("homeController",homeController);
+function homeController($scope){
+    $scope.var_one = "Welcome to Home Page...!";
+}
+
+config.js
+---------
+app.config(config);
+function config($stateProvider,$urlRouterProvider){
+    $urlRouterProvider.otherwise("/login");
+    $stateProvider.state("login",{
+        url:"/login",
+        templateUrl:"templates/login.html",
+        controller:"loginController"
+    })
+    .state("home",{
+        url:"/home",
+        templateUrl:"templates/home.html",
+        controller:"homeController"
+    });
+}
+
+index.html
+----------
+<html ng-app="app">
+    <div ui-view></div>
+</html>
+
+Step 5:
+-------
+    - implement the Nested Routing.
+
+-----------
+templates
+    about.html
+    contact.html
+    portfolio.html
+-------------
+
+---------------
+controllers
+    aboutController.js
+    contactController.js
+    portfolioController.js
+----------------    
+
+
+---------------
+services
+    homeService.js
+---------------
+
+home.html
+---------
+<a ui-sref=".about"><b>About</b></a>&emsp;&emsp;&emsp;&emsp;
+<a ui-sref=".contact"><b>Contact</b></a>&emsp;&emsp;&emsp;&emsp;
+<a ui-sref=".portfolio"><b>Portfolio</b></a>&emsp;&emsp;&emsp;&emsp;
+<button ng-click="logout()">Logout</button>
+
+<br><br>
+<div ui-view></div>
+
+about.html
+----------
+<h1>{{result}}</h1>
+
+contact.html
+----------
+<h1>{{result}}</h1>
+
+portfolio.html
+----------
+<h1>{{result}}</h1>
+
+aboutController.js
+------------------
+app.controller("aboutController",aboutController);
+function aboutController($scope,homeService){
+    homeService.getStaticData().then(function(res){
+        $scope.result = res;
+    });
+}
+
+contactController.js
+--------------------
+app.controller("contactController",contactController);
+function contactController($scope,homeService){
+    homeService.getMySQLData().then(function(res){
+        $scope.result = res;
+    });
+}
+
+portfolioController.js
+----------------------
+app.controller("portfolioController",portfolioController);
+function portfolioController($scope,homeService){
+    homeService.getMongoDBData().then(function(res){
+        $scope.result = res;
+    });
+}
+
+homeService.js
+--------------
+app.service("homeService",homeService);
+function homeService($http,$localStorage){
+    this.getStaticData = function(){
+        return $http.post("http://localhost:8080/static",
+                         {'token':$localStorage.poc.data.token})
+                                    .then(function(posRes){
+                                return posRes;
+                         },function(errRes){
+                                return errRes;
+                         });
+    }
+
+    this.getMySQLData = function(){
+        return $http.post("http://localhost:8080/mysql",
+                         {'token':$localStorage.poc.data.token})
+                                    .then(function(posRes){
+                                return posRes;
+                         },function(errRes){
+                                return errRes;
+                         });
+    }
+
+    this.getMongoDBData = function(){
+        return $http.post("http://localhost:8080/mongodb",
+                         {'token':$localStorage.poc.data.token})
+                                .then(function(posRes){
+                                return posRes;
+                         },function(errRes){
+                                return errRes;
+                         });
+    }
+
+}
+
+
+config.js
+---------
+   .state("home.about",{
+        url:"/about",
+        templateUrl:"templates/about.html",
+        controller:"aboutController"
+    })
+    .state("home.contact",{
+        url:"/contact",
+        templateUrl:"templates/contact.html",
+        controller:"contactController"
+    })
+    .state("home.portfolio",{
+        url:"/portfolio",
+        templateUrl:"templates/portfolio.html",
+        controller:"portfolioController"
+    })
+
+Step 6:
+
+    Create the Node services
+
+/static
+-------
+sample.json
+------------
+{
+    "products":[
+        {"p_id":111,"p_name":"p_one","p_cost":10000},
+        {"p_id":222,"p_name":"p_two","p_cost":20000},
+        {"p_id":333,"p_name":"p_three","p_cost":30000},
+        {"p_id":444,"p_name":"p_four","p_cost":40000},
+        {"p_id":555,"p_name":"p_five","p_cost":50000}
+    ]
+}
+
+app.post("/static",function(req,res){
+    if( req.body.token  == tokensArray[0] ){
+        fs.readFile(__dirname+"/sample.json", function(err,data){
+            res.send(data);
+        });
+    }else{
+        res.send({"404":"UnAuthenticated User !"});
+    }
+});
+
+
+/mysql
+------
+mysql> use poc;
+Database changed
+mysql> create table products(p_id integer,
+                             p_name varchar(20),
+                             p_cost integer);
+Query OK, 0 rows affected (0.35 sec)
+
+mysql> insert into products values(111,'p_one',10000);
+Query OK, 1 row affected (0.10 sec)
+
+mysql> insert into products values(222,'p_two',20000);
+Query OK, 1 row affected (0.07 sec)
+
+mysql> insert into products values(333,'p_three',30000);
+Query OK, 1 row affected (0.04 sec)
+
+app.post("/mysql",function(req,res){
+    if( req.body.token  == tokensArray[0] ){
+        connection.query("select * from products",
+                    function(err,recordsArray,fields){
+                res.send(recordsArray);
+        });
+    }else{
+        res.send({"404":"UnAuthenticated User !"});
+    }
+});
+
+
+/mongodb
+--------
+app.post("/mongodb",function(req,res){
+    if( req.body.token  == tokensArray[0] ){
+        poc.connect("mongodb://localhost:27017/poc",
+                    function(err,db){
+            db.collection("products").find().toArray(
+                        function(err,array){
+                    res.send(array);
+            });
+        }); 
+    }else{
+        res.send({"404":"UnAuthenticated User !"});
+    }
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

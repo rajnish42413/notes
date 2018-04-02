@@ -1,0 +1,135 @@
+<!--
+<!DOCTYPE html>
+<html lang="en">
+
+    <div ng-app>
+      <h1>Addition.{{10+10}}</h1>
+        <div>
+            <h1>Subtraction.{{20-10}}</h1>
+        </div>
+    </div>
+
+    &lt;!&ndash;Out Of ng-app scope&ndash;&gt;
+    <div>
+        <h1>Multiplication.{{10*10}}</h1>
+    </div>
+
+    <script src="bower_components/angular/angular.min.js"></script>
+</html>-->
+
+
+<!--<!DOCTYPE html>
+<html>
+    <h1>Addition.{{10+10}}</h1>
+    <h1>Subtraction.{{20-10}}</h1>
+    <h1>Multiplication.{{10*10}}</h1>
+
+    <script src="bower_components/angular/angular.min.js"></script>
+
+    &lt;!&ndash; Manual Bootstrap of static angular application&ndash;&gt;
+    <script>
+        angular.bootstrap(document);
+    </script>
+</html>-->
+
+
+
+
+
+<!--<!DOCTYPE html>
+<html ng-controller="ctrl">
+    <h1>{{data}}</h1>
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script>
+        var app = angular.module("app",[]);
+
+        app.controller("ctrl",ctrl);
+        function ctrl($scope) {
+            $scope.data = "Data From SQL Server Soon...!";
+        }
+
+        &lt;!&ndash; Manual Bootstrap of Dynamic Angular Application&ndash;&gt;
+        angular.bootstrap(document,["app"]);
+    </script>
+</html>-->
+
+
+
+
+<!DOCTYPE html>
+<html>
+
+    <div ng-app="app" ng-controller="ctrl_one">
+        <h1>{{var_one}}</h1>
+    </div>
+
+    <div id="my_div" ng-controller="ctrl_two">
+       <h1>{{var_two}}</h1>
+    </div>
+
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script>
+        var app = angular.module("app",[]);
+
+        app.controller("ctrl_one",ctrl_one);
+        function ctrl_one($scope) {
+            $scope.var_one = "Auto Bootstrap !";
+        }
+        app.controller("ctrl_two",ctrl_two);
+        function ctrl_two($scope) {
+            $scope.var_two = "Manual Bootstrap !";
+        }
+
+        <!-- Manual Bootstrap of div-->
+        var my_div = document.getElementById("my_div");
+        angular.bootstrap(my_div,["app"]);
+    </script>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

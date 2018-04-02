@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app"
+      ng-controller="ctrl"
+      ng-init="my_number=1">
+
+    <input type="number"
+           ng-model="my_number"
+           ng-change="findNumber(my_number)">
+    <h1 ng-hide="result">****Odd Number****</h1>
+    <h1 ng-hide="!result">***Even Number****</h1>
+    <script src="bower_components/angular/angular.min.js"></script>
+
+    <script>
+        angular.module("app",[])
+                .controller("ctrl",function ($scope) {
+            $scope.findNumber = function (num) {
+                $scope.result = num%2==0?true:false;
+            };
+        });
+    </script>
+
+
+</html>

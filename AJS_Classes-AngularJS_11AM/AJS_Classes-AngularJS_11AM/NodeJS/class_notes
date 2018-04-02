@@ -1,0 +1,271 @@
+NodeJS:
+------
+    - NodeJS is the Server Side Scripting Language.
+
+    - By using NodeJS, we can create the "http" & "tcp" servers.
+
+    - We can prepare the Node Applications by using JavaScript.
+
+Modules in NodeJS:
+------------------
+1. express
+    - this module used to develop the Rest API.
+
+2. mysql
+    - this module used to interact with the mysql database.
+
+3. mongodb
+    - this module used to interact with the mongo database.
+
+4. body-parser
+    - this module used to set the MIME Type.
+
+5. fs
+    - "fs" stands for file system.
+    -  this module used to interact with the flat files.
+
+6. jwt-simple
+    - this module used to maintain the token based authentication system.
+
+
+[Note : we can download all the modules by using "package.json" file]
+[Note : we can execute the package.json file by using "npm install" command]
+
+Ex_1:
+    launch the Angular Application by using Node Server.
+
+Step 1:
+    download the express module
+
+-------------
+NodeJS
+    Basic_NodeEx
+        package.json
+--------------
+package.json
+------------
+{
+  "name": "Basic_NodeEx",
+  "version": "0.0.1",
+  "dependencies": {
+    "express": "^4.15.4"
+  }
+}
+
+>npm install
+
+Step 2:
+    create the Angular Application.
+index.html
+----------
+<!DOCTYPE html>
+<html lang="en" ng-app="app" ng-controller="ctrl">
+    <h1>{{var_one}}</h1>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.min.js"></script>
+    <script>
+        angular.module("app",[]).controller("ctrl",function ($scope) {
+            $scope.var_one = "Basic AngularEx - NodeEx !";
+        });
+    </script>
+</html>
+
+
+Step 3:
+-------
+    Create the Node Server.
+
+server.js
+---------
+//import express
+var express = require("express");
+
+//create the node server instance (deployment object)
+var app = express();
+
+//deploy the application.
+app.use(express.static(__dirname+"/../Basic_NodeEx"));
+
+
+//assign the port no.
+app.listen(8080);
+console.log("Server Listening the Port No.8080");
+
+
+Ex_2:
+    Interacting with the flat file(sample.json) file by using node server
+
+Step 1:
+    download required modules to develop node server.
+    1. express (Restful API)
+    2. fs     (Interact with flat file) (Default Module)
+
+
+Step 2:
+    create the sample.json file.
+{
+    "products":[
+                    {"p_id":111,"p_name":"p_one","p_cost":10000},
+                    {"p_id":222,"p_name":"p_two","p_cost":20000},
+                    {"p_id":333,"p_name":"p_three","p_cost":30000},
+                    {"p_id":444,"p_name":"p_four","p_cost":40000},
+                    {"p_id":555,"p_name":"p_five","p_cost":50000}
+    ]
+}
+
+Step 3:
+    create the node server
+
+server.js
+---------
+var express = require("express");
+var fs = require("fs");
+var app = express();
+app.use(express.static(__dirname+"/../Node_StaticData"));
+
+//create the RestAPI
+app.get("/static" , function(req,res){
+    fs.readFile(__dirname+"/sample.json", function(err,data){
+        res.send(data);
+    });
+});
+
+app.listen(8080);
+console.log("Server Listening the Port No.8080");
+
+Step 4:
+    create the angular application
+Ex.
+    index.html
+
+
+Ex_3:
+    reading the data from mysql database
+
+> create schema demo;
+
+> use demo;
+
+> create table products(p_id integer,p_name varchar(20),p_cost integer);
+
+> insert into products values(111,'p_one',10000);
+
+> select * from products;
+
+
+server.js
+---------
+var express = require("express");
+var mysql = require("mysql");
+
+var app = express();
+
+app.use(express.static(__dirname+"/../Read_MySQLData"));
+
+
+//connection object
+var connection = mysql.createConnection({
+    host:"localhost",
+    user:"root",
+    password:"root",
+    database:"demo"
+});
+
+
+//connect to database.
+connection.connect();
+
+
+//Rest API
+app.get("/mysql", function(req,res){
+    connection.query("select * from products",function(err,recordsArray,fields){
+        res.send(recordsArray);
+    });
+});
+
+
+app.listen(8080);
+
+
+Ex_4:
+    reading the data from mongodb
+
+    - mongodb is the light weight database compared to traditional bases like
+      mysql, oracle,.....
+
+    - mongodb supports json objects
+
+    - mongodb follows "client-server" architecture.
+
+
+mongodb queries:
+----------------
+1. start the mongo server.
+> mongod
+
+2. connect to server.
+> mongo
+
+3. create and switch to database.
+> use demo;
+
+4. create collection.
+> db.createCollection("products");
+
+5. insert the data
+> db.products.insert({"p_id":111,"p_name":"p_one","p_cost":10000});
+
+6.query the collection
+> db.products.find();
+
+
+server.js
+---------
+var express = require("express");
+var mongodb = require("mongodb");
+
+//create the Client.
+var nareshIT = mongodb.MongoClient;
+
+app.get("/mongodb",function(req,res){
+    nareshIT.connect("mongodb://localhost:27017/demo" , function(err,db){
+        db.collection("products").find().toArray(function(err,array){
+            res.send(array);
+        });
+    });
+});
+
+app.listen(8080);
+console.log("Server Listening the Port No.8080");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

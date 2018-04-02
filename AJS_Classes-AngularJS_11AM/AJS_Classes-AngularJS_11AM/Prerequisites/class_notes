@@ -1,0 +1,364 @@
+1. JavaScript
+
+2. JSON (Java Script Object Notation)
+
+JavaScript:
+
+    - JavaScript is the Scripting Language.
+
+    - HTML mainly for Static Data.
+
+    - To Make HTML as "Dynamic Responsive" , we will dependent on
+      JavaScript.
+
+    - By using HTML, we can manipulate the DOM.
+        DOM Stands for Document Object Model
+
+Variables:
+----------
+    - variables are used to store the data.
+
+    - we can declare the variables by using "var" keyword.
+
+    - we can store all "categories of data" in variables.
+
+Ex.
+
+    var data = 100;     // integer data
+
+    var data = "data from mongodb soon..."; //string data
+
+    var data=100.01;   //float data
+
+    var data = {                //json objects
+                'emp_id':1,
+                'emp_name':'Hello_1'
+               };
+
+
+    var data =  new Date();   // predefined "Date class" object
+
+    var data = new emp();     // custom object (emp class object)
+
+
+Displaying the data on browser console
+--------------------------------------
+console.log("message");
+
+
+Displaying the data on webpage
+------------------------------
+document.write("message");
+
+
+Getting the References of HTML Elements to JavaScript:
+------------------------------------------------------
+<h1 id="first_h1"></h1>
+<h1 id="second_h1"></h1>
+
+var first_h1 = document.getElementById("first_h1");
+var second_h1 = document.getElementById("second_h1");
+
+
+
+functions:
+----------
+    - functions are set of statements.
+    - functions are meant for reuse the business logic.
+    - we have two types of functions.
+
+        1. Named JavaScript Functions.
+
+        2. Anonymous JavaScript Functions.
+
+
+1. Named JavaScript Functions.
+
+Syntax.
+------
+//create the function
+function fun_name(){
+    //Business Logic
+}
+
+
+//call the function
+fun_name();
+
+anonymous function:
+------------------
+    functions without name called as anonymous functions.
+
+Syntax.
+
+    //create the anonymous function
+
+    var my_fun = function(){
+        //Business Logic
+    }
+
+
+    //call the anonymous function
+    my_fun();
+
+
+JSON:
+----
+    - JSON Stands for Java Script Object Notation.
+
+    - JSON used to transfer the data over the network.
+
+    - JSON Format is the Network friendly format.
+
+    - JSON is ligth weigth compared to XML.
+
+Syntax.
+
+Objects - { }
+
+    - we have two types of JSON Objects.
+
+    1. Named JSON Objects
+
+    2. Anonymous JSON Objects
+
+
+1. Named JSON Objects
+---------------------
+
+    - The JSON Object with the name(custom name) called as
+      Named JSON Objects.
+
+
+Ex.
+    "emp":{
+
+    }
+
+    [Note : where "emp" is the name of the JSON Object]
+
+
+
+2. Anonymous JSON Objects
+-------------------------
+
+    - The JSON Object without name called as Anonymous JSON Object.
+
+Ex.
+    {
+
+    }
+
+
+
+2. JSON Arrays
+--------------
+    - we can represent the arrays with the help of [ ]
+
+    - we have two types of arrays.
+
+        1. Named JSON Arrays.
+
+        2. Anonymous JSON Arrays.
+
+    Ex.
+        Named JSON Arrays
+
+    "emp":[
+
+    ]
+
+    [Note : where "emp" is the name of the JSON Array ]
+
+    Anonymous JSON Arrays.
+    ----------------------
+
+        Ex.
+            [ ]
+
+
+
+3. data
+
+    - in general we can store the data in the form of a
+      "key&value" pairs.
+
+
+    Ex.
+        "sub_one":"AngularJS"
+          (key)     (value)
+
+
+
+Ex_1:
+    - create the JSON Object and assign to "data" variable.
+
+    - create the three key&value pairs in object.
+
+
+    var data = {
+        "sub_one":"AngularJS",
+        "sub_two":"NodeJS",
+        "sub_three":"MongoDB"
+    };
+
+
+    console.log(data.sub_one+"..."+data.sub_two+"..."+data.sub_three);
+
+    O/P:
+
+    AngularJS...NodeJS...MongoDB
+
+
+Ex_2:
+    - create "json object" and assign to "data" variable.
+
+    - create "products" array in json object.
+
+    - "create five anonymous json objects" in array.
+
+    - create the three "key&value" pairs in each object.
+
+
+var data = {
+
+    "products":[
+                    {"p_id":111,"p_name":"p_one","p_cost":10000},
+                    {"p_id":222,"p_name":"p_two","p_cost":20000},
+                    {"p_id":333,"p_name":"p_three","p_cost":30000},
+                    {"p_id":444,"p_name":"p_four","p_cost":40000},
+                    {"p_id":555,"p_name":"p_five","p_cost":50000}
+    ]
+};
+
+
+console.log(data.products.length); //5
+console.log(data.products[0]); //{"p_id":111,"p_name":"p_one","p_cost":10000}
+console.log(data.products[0].p_cost); //10000
+console.log(data.products[4].p_cost); //50000
+
+    **************
+var result="";
+for(var i=0;i<data.products.length;i++){
+        var obj = data.products[i];
+        var value_one = obj.p_id;
+        var value_two = obj.p_name;
+        var value_three = obj.p_cost;
+        result = result+"..."+value_one+"..."+value_two+"..."+value_three;
+}
+console.log(result);
+    ***************
+
+
+
+Ex_3:
+
+    var data={
+        "fun_one":fun_one,
+        "fun_two":fun_two,
+        "fun_three":fun_three
+    };
+
+    function fun_one(){
+        return "AngularJS";
+    }
+
+    function fun_two(){
+        return "NodeJS";
+    }
+
+    function fun_three(){
+        return "MongoDB";
+    }
+
+    console.log(data.fun_one()+"..."+
+                data.fun_two()+"..."+
+                data.fun_three());
+
+
+
+
+
+Classes in JavaScript:
+---------------------
+
+    - collection of variables and functions called as class.
+
+    - in class all the "members of class" should initilize with
+      "this" keyword.
+
+    - in javascript we can create class by using "function" keyword.
+
+    - we can create the objects by using "new" keyword.
+
+
+
+
+Ex.
+    function class_one(){
+        this.var_one = "Welcome to Classes";
+        this.my_fun = function(){
+            return this.var_one;
+        };
+    }
+
+
+    //create the object
+    var obj = new class_one();
+    obj.my_fun();  //Welcome to Classes
+
+
+
+[Note :
+
+       //create the function out of class
+       function fun_one(){
+
+       }
+
+
+       //create function inside class
+       this.function = function(){
+
+       }
+
+       //anonymous function
+       var fun_one = function(){
+
+       }
+]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

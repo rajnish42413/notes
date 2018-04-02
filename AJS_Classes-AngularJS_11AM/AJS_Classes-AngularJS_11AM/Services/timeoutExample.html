@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app" ng-controller="ctrl">
+    <h1>{{var_one}}</h1>
+    <h1>{{var_two}}</h1>
+    <h1>{{var_three}}</h1>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.min.js"></script>
+    <script>
+        var app = angular.module("app",[]);
+
+        app.controller("ctrl",ctrl);
+        function ctrl($scope,$timeout,$interval,$location) {
+            $scope.var_one = "Fetching Data From Server...!";
+            $timeout(fun_one,5000);
+            function fun_one() {
+                $scope.var_one = "Success...!";
+            }
+
+            $scope.var_two=new Date().toLocaleTimeString();
+            $interval(fun_two,1000);
+            function fun_two() {
+                $scope.var_two=new Date().toLocaleTimeString();
+            }
+
+            $scope.var_three = $location.absUrl();
+        }
+    </script>
+</html>

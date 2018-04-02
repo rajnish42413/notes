@@ -1,0 +1,341 @@
+Repository
+
+	- Repositories are meant for Collabrate the "work flow"
+          in Projects.
+
+	Ex.
+
+		GitHub
+
+		SVN
+		
+		CVS
+
+		ClearCase
+
+		--
+		--
+		--
+
+	- "GitHub" is the Open Source Repository Maintained By
+           Google.
+
+
+GitHub Operations:
+------------------
+
+1. Installation Of Git.
+
+2. creating the local repository
+
+3. add the user credentials to the repository.
+
+4. create the files
+
+5. commit the files to the repository
+
+6. create the branch
+
+7. merge the branches
+
+8. Integration Of Cloud Repository to the IDE'S
+
+		1. Ecilipse
+
+		2. WebStrom
+
+		3. Visual Studio
+
+
+9. commit the changes to the cloud repository.
+
+10. push the code to the cloud repository
+
+11. pull the code from cloud repository
+
+1. Installation Of Git.
+-----------------------
+	- Git is the interface tool used to interact with the GitHub.
+
+
+website : https://git-scm.com/downloads
+
+file name : Git-2.14.1-64-bit.exe
+
+
+2. creating the local repository
+--------------------------------
+
+	- create directory (folder)
+
+	Ex.
+		github demo
+
+
+	- launch the "gitbash Here" terminal.
+
+	- execute the following command.
+
+	  >git init
+
+[Note : automatically "github demo" folder 
+	converted as local repository]
+
+
+3. add the user credentials to the repository.
+----------------------------------------------
+User Name:
+----------
+>git  config --global user.name "NareshIT"
+
+User Email:
+-----------
+>git  config --global user.email "hr@nareshit.in"
+
+
+4.create the files to the repository
+------------------------------------
+>touch sample.html
+
+[Note : automatically "sample.html" file will be created in
+        repository]
+
+>git status
+	- used to know the status of files in repository
+
+
+[Note : "red color" labeled files indicating untracked files
+(unsaved files)]
+
+
+5. commit the files to the repository
+-------------------------------------
+
+>git add sample.html
+
+>git commit
+
+>press "i"  (insert mode)
+
+>type "initial commit"
+
+>press "ESC"
+
+>type ":wq"
+
+>press "enter"
+
+
+From 2nd Commit Onwards:
+------------------------
+>git add sample.html
+
+>git commit -m "custom message"
+
+>git log
+	
+	- used to know commits in repository
+	
+
+6. create the branch
+--------------------
+
+> git branch AngularJS_11AM
+
+[Note : by default all the master branch files automatically available child branches]
+
+> git checkout AngularJS_11AM
+	- Automatically we can switch to AngularJS_11AM Branch.
+	
+
+7. Merge the Branches.
+
+> git checkout master
+> git merge AngularJS_11AM
+
+
+8. Integration Of Cloud Repository to the IDE'S
+
+1. Download and Install the NodeJS
+
+	website : https://nodejs.org/en/download/
+
+	file name : node-v6.11.2-x64.msi
+
+
+2. Download and Install WebStrom IDE.
+
+[Note : WebStrom IDE is Powerful IDE For UI Application Development like AngularJS,
+         Angular4,reactJS,d3JS,NodeJS.....]
+
+
+	website : https://www.jetbrains.com/webstorm/
+			download/download-thanks.html?
+			platform=windows
+
+	file name : WebStorm-2017.2.2.exe
+
+
+3. Create the Account with the GitHub
+
+	Website : https://github.com/join/
+
+
+4. Checkout the Code from the Cloud Repository
+
+	URL : https://github.com/ajsnaresh/AJS_Classes.git
+
+
+- Run the WebStrom IDE 
+
+- Checkout from Version Control
+
+- GitHub
+
+- click the "Create API Token"
+
+- Enter GitHub Login & Password
+
+- Login (2 times we must click)
+
+- Enter the Git Repository Details
+
+	Git Repository URL  : https://github.com/ajsnaresh/AJS_Classes.git
+
+	Parent Directory    : D:/
+
+	Parent Folder       : AJS_Classes
+
+- click the clone.
+
+- Press the YES.
+
+- Checkout the AngularJS_11AM Branch (Bottom Left Corner Of IDE).
+
+- ALT+1 used to Show the Project View.
+
+
+10. push the code to the cloud repository
+-----------------------------------------
+
+ ==> ctrl + k
+
+ ==> enter the commit message
+
+ ==> click the commit & push
+
+ ==> push
+
+
+ [Automatically code will be committed to the cloud repository]
+
+
+
+11. pull the code from cloud repository.
+
+==> VCS
+
+==> Git
+
+==> Pull
+
+==> select AngularJS_11AM
+
+==> pull.
+
+
+
+Creating the Workplace for practicing the Angular Applications
+--------------------------------------------------------------
+
+==> File
+
+==> project
+
+==> empty (left panel)
+
+==> D:/PracticeApps
+
+==> create
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

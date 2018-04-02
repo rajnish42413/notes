@@ -1,0 +1,394 @@
+Directives:
+
+    - Directives in angularjs, enhances the HTML Capabilities.
+
+    - We have two types of directives.
+
+        1.predefined directives
+
+        2.custom directives
+
+1.predefined directives
+------------------------
+
+    - The Directives given by the framework called as Predefined Directives.
+
+
+1)ng-app
+--------
+    - this directive called as root directive.
+
+    - angular framework starts the execution from ng-app directive.
+
+    - "ng-app" directive takes the logical name of web application.
+
+    - logical name of web application optional for
+      static angular applications
+
+    Ex.
+        ng-app
+
+    - logical name of web application mandatory for "dynamic angular applications"
+
+      Ex.
+        ng-app="app"
+
+    - executing the angular application forcefully without "ng-app"
+      directive called as "manual bootstrap".
+
+
+
+2) ng-controller
+    - this directive used to declare the controllers.
+
+    - we can have more than one controller per web application.
+
+    - in genaral we will declare controllers in view.
+
+        Ex.
+
+            <div ng-controller="ctrl_one">
+                //Logic Goes Here
+            </div>
+
+    - in general we will implement the controllers in javascript.
+
+        Ex.
+            app.controller("ctrl_one",ctrl_one);
+            function ctrl_one($scope){
+                //Logic Goes Here
+            }
+
+
+3. ng-repeat
+
+    - this directive used to iterate the list of elements from an array.
+
+Syntax.
+    ng-repeat = "variable in array" ng-bind="variable"
+
+
+Predefined Objects with ng-repeat:
+----------------------------------
+1.$index
+    - it will return the indexes of an elements from an array.
+
+2.$first
+    - it will return first index of an array as true.
+
+3.$last
+    - it will return last index of an array as true.
+
+** 4.$middle
+    - it will return all the middle indexes of an array as true.
+
+5.$even
+    - it will return even indexes of an array as true.
+
+6.$odd
+    - it will return odd indexes of an array as true.
+
+
+4. ng-click
+------------
+    - when ever we click the user interface elements, automatically
+      ng-click directive will be executed by angular framework.
+
+
+Syntax.
+    ng-click= "Expression"/
+              "user defined function"/
+              "user defined function with parameters"
+
+Example:
+
+    ng-click="count=count+1"
+
+    ng-click="login()"
+
+    ng-click="login('admin','admin')"
+
+
+
+5)ng-options
+    - this directive used to populate the values to the drop down.
+
+Syntax.
+    ng-options = "model_values as dropdown_values for variable in array"
+
+Ex.
+    $scope.array_one = [{'p_id':1,'p_name':'laptop'},
+                        {'p_id':2,'p_name':'tv'},
+                        {'p_id':3,'p_name':'mac book'},
+                        {'p_id':4,'p_name':'smart phone'},
+                        {'p_id':5,'p_name':'watch'}];
+
+    Use Case : 1
+        drop down - id's
+        model     - names
+
+    <select ng-model="model_one" ng-options="x.p_name as x.p_id for
+                                             x in array_one"></select>
+
+
+    Use Case : 2
+        drop down - names
+        model     - id's
+
+    <select ng-model="model_two" ng-options="x.p_id as x.p_name for
+                                             x in array_one"></select>
+
+
+
+    Use Case : 3
+        drop down - names
+        model     - names
+
+
+    Use Case : 4
+        drop down - id's
+        model     - id's
+
+
+    Ex.
+
+        $scope.array_two = ["Hello_1","Hello_2","Hello_3","Hello_4","Hello_5"];
+        drop down - Hello_1 to Hello_5
+        model     - Hello_1 to Hello_5
+        <select ng-model="model_five" ng-options="x as x for x in array_two"></select>
+
+
+
+6.ng-init
+    - ng-init directive used to initilize the members in configuration phase.
+    - ng-init initilized members available to application scope.
+    - we can declare the members in the form of a "key&value" pairs.
+
+Syntax.
+    ng-init="db_user = 'root'"
+
+where "db_user" is the key and we can access anywhere in the application.
+
+
+7. ng-dblclick:
+    - this directive will execute by angular framework when ever double click
+      event raised by user interface elements
+
+Syntax.
+    ng-dblclick="Expression"/
+                "user defined function"/
+                "user defined function with parameters"
+
+
+8.ng-class-odd
+    - this directive used to apply the css classes to the odd rows of table.
+
+
+9.ng-class-even
+    - this directive used to apply the css classes to the even rows of table.
+
+10.ng-include
+    - this directive used to include one template to another template.
+
+Ex.
+    $scope.array = [{"e_id":111,"e_name":"emp_one","e_sal":10000},
+                    {"e_id":222,"e_name":"emp_two","e_sal":20000},
+                    {"e_id":333,"e_name":"emp_three","e_sal":30000},
+                    {"e_id":444,"e_name":"emp_four","e_sal":40000},
+                    {"e_id":555,"e_name":"emp_five","e_sal":50000}
+                    ];
+
+    <style>
+        .odd{
+            color:red;
+         }
+         .even{
+            color:green;
+         }
+    </style>
+
+    table.html
+    ----------
+    <table border="1">
+                <tr>
+                    <th>id</th>
+                    <th>name</th>
+                    <th>sal</th>
+                </tr>
+
+                <tr ng-repeat="x in array"
+                                ng-class-odd="'odd'"
+                                ng-class-even="'even'">
+                    <td>{{x.e_id}}</td>
+                    <td>{{x.e_name}}</td>
+                    <td>{{x.e_sal}}</td>
+                </tr>
+    </table>
+
+
+    ngIncludeDemo.html
+    ------------------
+    <html ng-app="app">
+        <div ng-include="'table.html'"></div>
+    </html>
+
+    **********************
+Directives
+    app.js
+    ctrl.js
+    my_style.css
+    table.html
+    ngIncludeDemo.html
+    **********************
+
+
+11.ng-if
+    - this directive used to write the conditions.
+
+Syntax.
+    ng-if="true"/ "false"
+
+
+Ex.
+    <label>Uname.</label>
+    <input type="text" ng-model="uname">
+
+    <span ng-if="uname!=null && uname!=''">
+        <label>Upwd.</label>
+        <input type="password" ng-model="upwd">
+    </span>
+
+[Note : ng-if directive can directly interact with the document object]
+[Note : based on the condition ng-if directive adds/removes the nodes from the DOM]
+
+
+12. ng-show
+
+    - this directive used to show / hide the html elements
+      based on the condition
+
+    Syntax.
+        ng-show = "true" / "false"
+
+
+
+13. ng-switch
+
+Syntax.
+
+<div ng-switch="expression">
+
+    <div ng-switch-when="value_one">
+        //Code
+    </div>
+
+    <div ng-switch-when="value_two">
+        //Code
+    </div>
+
+        ---
+        ---
+        ---
+    <div ng-switch-default>
+        //Code
+    </div>
+</div>
+
+
+
+
+14.ng-submit:
+    - this directive used to submit the form to the controller at a time.
+
+Syntax.
+
+<form ng-submit="login_details()">
+
+    //Form Elements
+
+    <input type="submit"></input>
+</form>
+
+
+[Note : when ever we click the submit button, automatically login_details() will
+        execute in controller]
+
+
+15. ng-hide
+    - it is used to show / hide the html elements based on condition.
+
+Syntax.
+    ng-hide = "true" / "false"
+
+
+16. ng-mousedown/
+    ng-mouseup
+
+    ng-mouseenter/
+    ng-mouseleave       ="Expression" / "user defined function" / "user defined function with parameters"
+
+    ng-mouseover/
+    ng-mouseout
+
+    ng-mousemove
+
+
+
+17. ng-cloak:
+    - this directive used to avoid the flickering of web page
+      when ever we refresh with expressions
+
+
+Ex.
+    <div ng-controller="ctrl" ng-cloak>
+        {{var_one}}
+    </div>
+
+[Note : eventhoe if we refresh web page , div won't be flickered because of
+        ng-cloak directive]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

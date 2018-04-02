@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app" ng-controller="ctrl">
+    <form ng-submit="login_details()">
+        <label>Uname.</label>&emsp;&emsp;&emsp;&emsp;&emsp;
+        <input type="text" ng-model="obj.uname">
+
+        <br><br>
+        <label>Upwd.</label>&emsp;&emsp;&emsp;&emsp;&emsp;
+        <input type="password" ng-model="obj.upwd">
+
+        <br><br>
+        <input type="submit">
+    </form>
+
+
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script>
+        var app = angular.module("app",[]);
+
+        app.controller("ctrl",ctrl);
+        function ctrl($scope) {
+            $scope.obj={};
+
+            $scope.login_details = function () {
+                if($scope.obj.uname=="admin" && $scope.obj.upwd=="admin"){
+                    alert("Success !");
+                }else{
+                    alert("Fail !");
+                }
+            };
+        }
+
+
+
+
+
+
+    </script>
+
+</html>

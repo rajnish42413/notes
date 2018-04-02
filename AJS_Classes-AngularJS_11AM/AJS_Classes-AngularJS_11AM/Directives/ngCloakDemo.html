@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script>
+        var app = angular.module("app",[]);
+        app.controller("ctrl",ctrl);
+        function ctrl($scope) {
+            $scope.var_one="I am from controller !";
+        }
+    </script>
+</head>
+<body>
+    <div ng-controller="ctrl" ng-cloak>
+        {{var_one}}
+    </div>
+</body>
+</html>

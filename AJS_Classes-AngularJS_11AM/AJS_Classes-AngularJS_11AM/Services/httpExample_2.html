@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app" ng-controller="ctrl">
+
+    <input type="text" ng-model="uname">
+    <br><br>
+    <button ng-click="postData({'message':uname})">Post</button>
+    <br><br>
+    <h1>{{result}}</h1>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.min.js"></script>
+    <script>
+        var app = angular.module("app",[]);
+
+        app.controller("ctrl",ctrl);
+        function ctrl($scope,my_service) {
+            $scope.postData = function (arg1) {
+                my_service.getData(arg1).then(function (res) {
+                    $scope.result = res;
+                });
+            };
+        };
+
+        app.service("my_service",my_service);
+        function my_service($http) {
+            this.getData = function (arg1) {
+                return $http.post("http://test-routes.herokuapp.com/test/uppercase",arg1).then(function (posRes) {
+                    return posRes;
+                },function (errRes) {
+                    return errRes;
+                });
+            };
+        };
+    </script>
+</html>

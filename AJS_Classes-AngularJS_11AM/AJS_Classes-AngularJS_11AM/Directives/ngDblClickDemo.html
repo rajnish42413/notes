@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app"
+                ng-controller="ctrl"
+                ng-init="my_model=array[0]">
+
+    <select ng-model="my_model"
+            ng-options="x as x for x in array">
+        <option value="">--Select Value--</option>
+    </select>
+
+    <button ng-dblclick="clickMe(my_model)">Double Click</button>
+
+
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script>
+        var app = angular.module("app",[]);
+
+        app.controller("ctrl",ctrl);
+        function ctrl($scope) {
+            $scope.array = ["Hello_1","Hello_2","Hello_3","Hello_4","Hello_5"];
+            $scope.clickMe = function (arg1) {
+                alert(arg1);
+            };
+        }
+
+    </script>
+</html>

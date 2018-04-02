@@ -1,0 +1,8 @@
+{
+  "name": "MondoDB_Example",
+  "version": "0.0.1",
+  "dependencies": {
+    "express": "^4.15.4",
+    "mongodb": "latest"
+  }
+}

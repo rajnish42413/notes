@@ -1,0 +1,183 @@
+by using angularjs, we can create the two types of applications.
+
+1. static angular application.
+
+2. dynamic angular application.
+
+
+static angular application:
+---------------------------
+
+    - if view won't interacts with the controller for dynamic data
+      then such type of angular application called as static angular
+      application.
+
+
+Steps to create the static angular application:
+-----------------------------------------------
+
+1. download the angular framework by using bower.
+
+bower.json
+----------
+{
+    "name":"nareshit",
+    "dependencies":{
+        "angular":"latest"
+    }
+}
+
+>bower install
+
+
+2. create the view.
+
+index.html
+
+<!DOCTYPE html>
+<html ng-app>
+
+    <input type="number" ng-model="model_one"><br><br>
+    <input type="number" ng-model="model_two"><br><br>
+
+    <h1 ng-bind="model_one+model_two"></h1>
+
+    <script src="bower_components/angular/angular.min.js"></script>
+</html>
+
+
+------------------------
+StaticAngularApplication
+    bower.json
+    index.html
+-------------------------
+
+
+Dynamic Angular Application:
+
+    - if view interacts with controller for dynamic data, then such
+      type of angular application called as Dynamic Angular Application.
+
+Steps to Design the Dynamic Angular Application:
+------------------------------------------------
+
+Step 1:
+    download angular framework by using bower.
+
+bower.json
+----------
+{
+    "name":"nareshit",
+    "dependencies":{
+        "angular":"latest"
+    }
+}
+
+>bower install
+
+
+Step 2:
+    load the angular framework.
+
+Step 3:
+    declare the root directive with logical name of web application.
+
+    ng-app="app"
+
+
+Step 4:
+    declare the controller by using "ng-controller" directive.
+
+    Ex.
+        <div ng-controller="ctrl">
+
+        </div>
+
+
+Step 5:
+    add the required dependencies to angular application.
+
+    Ex.
+
+    <script>
+		var app = angular.module("app",[]);
+		    (Object)
+	</script>
+
+    [Note : where "app" object used to implement the
+            controllers, services, filters, directives,....]
+
+
+Step 6:
+    Implement the controller.
+
+    app.controller("ctrl", ctrl);   //@arg1 - name of the controller
+                                    //@arg2 - custom function defination
+
+    //defination
+    function ctrl($scope){        //$scope - predefined object
+    	//declaring the variable
+    	$scope.data = "data from data base soon...!";
+    }
+
+
+        ******************
+DynamicAngularApplication
+    bower.json
+    index.html
+    app.js
+    controllers
+        ctrl.js
+      *********************
+
+
+Declaring the variables in controller
+--------------------------------------
+
+Ex.
+    $scope.sub_one = "AngularJS";
+    $scope.sub_two = "NodeJS";
+    $scope.sub_three = "sql server";
+
+    {{sub_one+"...."+sub_two+"...."+sub_three}}
+    <h1 ng-bind="sub_one+'....'+sub_two+'...'+sub_three"></h1>
+
+
+Declaring the functions in controller
+-------------------------------------
+
+Ex.
+    $scope.my_fun = function(){
+        return "Welcome !";
+    }
+
+    {{my_fun()}} //Welcome !
+    {{my_fun}}   // defination will return
+
+
+
+declaring the inner functions in controller
+-------------------------------------------
+
+$scope.fun_one = function(){
+    return $scope.fun_two();
+};
+
+$scope.fun_two = function(){
+    return "Welcome !";
+}
+
+{{fun_one()}}  //Welcome !
+
+
+
+declaring the objects (json objects) in controller
+---------------------------------------------------
+
+$scope.obj = {
+    "key_one":"Welcome";
+};
+
+{{obj.key_one}}
+
+

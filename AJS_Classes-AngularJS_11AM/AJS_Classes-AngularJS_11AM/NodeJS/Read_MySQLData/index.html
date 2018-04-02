@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app" ng-controller="ctrl">
+
+    <table border="1">
+        <tr>
+            <th>id</th>
+            <th>name</th>
+            <th>cost</th>
+        </tr>
+
+        <tr ng-repeat="x in result">
+            <td>{{x.p_id}}</td>
+            <td>{{x.p_name}}</td>
+            <td>{{x.p_cost}}</td>
+        </tr>
+    </table>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.min.js"></script>
+    <script>
+        var app = angular.module("app",[]);
+
+        app.service("my_service",my_service);
+        function my_service($http) {
+            this.getData = function () {
+                return $http.get("http://localhost:8080/mysql").then(function (posRes) {
+                   return posRes.data;
+                },function (errRes) {
+                    return errRes;
+                });
+            };
+        };
+
+
+        app.controller("ctrl",ctrl);
+        function ctrl($scope,my_service) {
+            my_service.getData().then(function (res) {
+                $scope.result = res;
+            });
+        };
+    </script>
+</html>

@@ -1,0 +1,105 @@
+<!--
+<script type="text/javascript">
+    
+    function fun_one() {
+        return {
+           "sub_one":"AngularJS",
+           "sub_two":"NodeJS",
+           "sub_three":"MongoDB"
+        };
+    }
+
+    var obj = fun_one();
+    document.write("<h1 style='color:red'>"+obj.sub_one+"<==>"+
+                                            obj.sub_two+"<==>"+
+                                            obj.sub_three+"</h1>");
+
+    
+</script>-->
+
+
+
+<!--<script>
+
+    var data = {
+
+        "products":[
+            {"p_id":111,"p_name":"p_one","p_cost":10000},
+            {"p_id":222,"p_name":"p_two","p_cost":20000},
+            {"p_id":333,"p_name":"p_three","p_cost":30000},
+            {"p_id":444,"p_name":"p_four","p_cost":40000},
+            {"p_id":555,"p_name":"p_five","p_cost":50000}
+        ]
+    };
+
+    var result = "";
+
+    for(var i=0;i<data.products.length;i++){
+        var obj = data.products[i];
+        var value_one = obj.p_id;
+        var value_two = obj.p_name;
+        var value_three = obj.p_cost;
+
+        result+=value_one+"..."+value_two+"..."+value_three+"<br>";
+    }
+
+    document.write(result);
+
+</script>-->
+
+
+
+
+<script>
+
+    var data = {
+        "fun_one":fun_one,
+        "fun_two":fun_two(),
+        "fun_three":fun_three
+    };
+
+    function fun_one() {
+        return "AngularJS";
+    }
+
+    function fun_two() {
+        return "NodeJS";
+    }
+
+    function fun_three() {
+        return "MongoDB";
+    }
+
+    document.write(data.fun_one()+"..."+
+                   data.fun_two+"..."+
+                   data.fun_three());
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

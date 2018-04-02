@@ -1,0 +1,12 @@
+{
+    "name": "poc",
+    "description": "mini project",
+    "version": "1.0.0",
+    "dependencies": {
+        "express": "4.15.4",
+        "mysql":"2.14.1",
+        "mongodb":"2.2.31",
+        "jwt-simple": "0.5.1",
+        "body-parser": "1.18.1"
+    }
+}

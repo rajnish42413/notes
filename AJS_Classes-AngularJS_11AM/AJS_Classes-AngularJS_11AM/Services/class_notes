@@ -1,0 +1,257 @@
+Services:
+    - Services will provide the common business logic multiple controllers.
+
+    - we have two types of services.
+
+        1. predefined services
+
+        2. custom services
+
+custom services
+---------------
+
+- the services developed by developer based on application requirement called as
+  custom services.
+
+- in angular we can create the custom services in 5 ways.
+
+    1. service()
+
+    2. factory()
+
+    3. value()
+
+    4. constant()
+
+    5. provider()
+
+
+creating the custom service by using service()
+----------------------------------------------
+app.service("my_service",my_service);
+function my_service(){
+
+    this.fun_one = function(){
+        return "Data From MongoDB...!";
+    }
+
+    this.fun_two = function(){
+         return "Data from MySQL...!"
+    }
+}
+
+
+app.controller("ctrl_one",ctrl_one);
+function ctrl_one($scope,my_service){
+    $scope.var_one = my_service.fun_one();
+}
+
+
+app.controller("ctrl_two",ctrl_two);
+function ctrl_two($scope,my_service){
+    $scope.var_two=my_service.fun_two();
+}
+
+[Note : service() depending on user defined functions to provide the
+        services to controllers]
+
+
+
+Creating the Custom Service by using factory()
+----------------------------------------------
+    - factory() is the predefined function used to create the custom services.
+
+    - factory() function can provide the services to controllers directly.
+
+
+Ex.
+    app.factory("my_service",my_service);
+    function my_service(){
+        //return "I am from factory";
+        return new class_one().fun_one();
+    }
+
+
+    app.controller("ctrl_one",ctrl_one);
+    function ctrl_one($scope,my_service){
+        $scope.var_one = my_service;
+    }
+
+    app.controller("ctrl_two",ctrl_two);
+    function ctrl_two($scope,my_service){
+          $scope.var_two = my_service;
+    }
+
+
+    function my_class(){
+        this.fun_one = function(){
+            return "Welcome to JS Classes";
+        }
+    }
+
+
+creating the custom service by using value()
+--------------------------------------------
+    - we can create the custom services in the form of a "key&value" pairs by using
+      value()
+
+Ex.
+    app.value("my_service","First Value");
+
+    - value() function will provide the latest value of custom service.
+
+
+creating the custom service by using constant()
+-----------------------------------------------
+    - we can create the custom services in the form of a "key&value" pairs by using
+      constant()
+
+Ex.
+    app.constant("my_service","First Value");
+
+    - constant() function will provide the oldvalue of custom service.
+
+
+creating the custom service by using provider()
+-----------------------------------------------
+    - provider() depending on "$get()" function to provide the services to
+      controllers.
+
+    - provider() function can interact with the config phase.
+
+app.provider("my_service",my_service);
+function my_service(){
+    this.db_password="root_one";
+    this.$get = function(){
+        return this.db_password;
+    }
+}
+
+app.config(config);
+function config(my_serviceProvider){
+    my_serviceProvider.db_password="root_two";
+}
+
+
+Predefined Services:
+--------------------
+    - The Services Given by the Angular Framework called as Predefined Services.
+
+1. $http
+    - this predefined service used to connect to servers by using http protocol.
+
+
+app.service("my_service",my_service);
+function my_service($http){
+    this.getData = function(){
+        return $http.get("https://www.w3schools.com/angular/customers.php")
+            .then(function(posRes){
+                return posRes;
+            },function(errRes){
+                return errRes;
+        });
+    }
+}
+
+app.controller("ctrl",ctrl);
+function ctrl($scope,my_service){
+    my_service.getData().then(function(res){
+        $scope.var_one = res;
+    });
+};
+
+Ex_2:
+
+app.service("my_service",my_service);
+function my_service($http) {
+     this.getData = function (arg1) {
+         return $http.post("http://test-routes.herokuapp.com/test/uppercase",
+                            arg1)
+                            .then(function (posRes) {
+             return posRes;
+         },function (errRes) {
+             return errRes;
+         });
+     };
+};
+
+app.controller("ctrl",ctrl);
+        function ctrl($scope,my_service) {
+            $scope.postData = function (arg1) {
+                my_service.getData(arg1).then(function (res) {
+                    $scope.result = res;
+                });
+            };
+};
+
+<input type="text" ng-model="uname">
+<br><br>
+<button ng-click="postData({'message':uname})">Post</button>
+<br><br>
+<h1>{{result}}</h1>
+
+
+
+$q:
+---
+    - $q is the predefined service in angularjs.
+
+    - by using $q we can overcome the data redundency
+
+    Ex.
+        $q.all([my_service.fun_one(),my_service.fun_two()]).then(function (res) {
+               $scope.var_one = res[0];
+               $scope.var_two = res[1];
+        });
+
+    - by using "$q" we can implement the asyncronous communication
+
+            var deffered_one=$q.defer();
+            this.fun_one = function () {
+                return $http.get("http://demosoft.highgrowth.in/test/jsonexample.php")
+                        .then(function (posRes) {
+                    deffered_one.resolve(posRes);
+                    return deffered_one.promise;
+                },function (errRes) {
+                    deffered_one.reject(errRes);
+                    return deffered_one.promise;
+                });
+            };
+
+
+3. $timeout
+
+    - this predefined service used to execute a perticular function with a given
+      time.
+
+Ex.
+    $timeout(fun_one,5000);
+    function fun_one(){
+        //Business logic
+    }
+
+
+
+4. $interval
+
+    - this predefined service used to execute a perticular function repetedely with
+      a given interval of time
+
+Ex.
+    $interval(fun_two,5000);
+    function fun_two(){
+        //Business logic
+    }
+
+5. $location
+    - this predefined service used to find the absolute path of web application.
+
+
+
+
+
+
+
+
+
+

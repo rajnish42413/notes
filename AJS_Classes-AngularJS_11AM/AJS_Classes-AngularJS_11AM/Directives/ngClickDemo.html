@@ -1,0 +1,162 @@
+<!--
+<!DOCTYPE html>
+<html lang="en" ng-app="app" ng-controller="ctrl">
+
+    <button class="glyphicon glyphicon-plus" ng-click="count=count+1"></button>
+    <button class="btn btn-primary">{{count}}</button>
+    <button class="glyphicon glyphicon-minus" ng-click="count=count-1"></button>
+
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script>
+        var app = angular.module("app",[]);
+
+        app.controller("ctrl",ctrl);
+        function ctrl($scope) {
+            $scope.count=0;
+        }
+    </script>
+</html>-->
+
+
+
+<!--
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="ctrl">
+    <label>Uname.</label>&emsp;&emsp;&emsp;&emsp;
+    <input type="text" ng-model="uname">
+
+    <br><br>
+    <label>Upwd.</label>&emsp;&emsp;&emsp;&emsp;
+    <input type="password" ng-model="upwd">
+
+
+    <br><br>
+    <button ng-click="login(uname,upwd)">Login</button>
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script>
+        var app = angular.module("app",[]);
+
+        app.controller("ctrl",ctrl);
+        function ctrl($scope) {
+            $scope.login = function (arg1,arg2) {
+                if(arg1=="admin" && arg2=="admin"){
+                    alert("Login Success !");
+                }else{
+                    alert("Login Fail !");
+                }
+            };
+        };
+    </script>
+</html>
+-->
+
+
+
+<!--
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="ctrl">
+<label>Uname.</label>&emsp;&emsp;&emsp;&emsp;
+<input type="text" ng-model="uname">
+
+<br><br>
+<label>Upwd.</label>&emsp;&emsp;&emsp;&emsp;
+<input type="password" ng-model="upwd">
+
+
+<br><br>
+<button ng-click="login({'uname':uname,'upwd':upwd})">Login</button>
+<script src="bower_components/angular/angular.min.js"></script>
+<script>
+    var app = angular.module("app",[]);
+
+    app.controller("ctrl",ctrl);
+    function ctrl($scope) {
+        $scope.login = function (arg1) {
+            if(arg1.uname=="admin" && arg1.upwd=="admin"){
+                alert("Login Success !");
+            }else{
+                alert("Login Fail !");
+            }
+        };
+    };
+</script>
+</html>
+-->
+
+
+
+
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="ctrl">
+
+<label>Uname.</label>&emsp;&emsp;&emsp;&emsp;
+<input type="text" ng-model="login_details.uname">
+<br><br>
+<label>Upwd.</label>&emsp;&emsp;&emsp;&emsp;
+<input type="password" ng-model="login_details.upwd">
+<br><br>
+<button ng-click="login()">Login</button>
+<script src="bower_components/angular/angular.min.js"></script>
+<script>
+    var app = angular.module("app",[]);
+    app.controller("ctrl",ctrl);
+    function ctrl($scope) {
+        $scope.login_details={};
+        $scope.login = function () {
+            if($scope.login_details.uname=="admin" &&
+                $scope.login_details.upwd=="admin"){
+                alert("Login Success !")
+            }else{
+                alert("Login Fail !");
+            }
+        };
+    };
+</script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

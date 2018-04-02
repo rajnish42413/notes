@@ -1,0 +1,7 @@
+{
+  "name":"nareshit",
+  "dependencies":{
+    "angular":"~1.5.0",
+    "angular-route": "~1.5.0"
+  }
+}

@@ -1,0 +1,51 @@
+<!--
+<script>
+
+    var my_fun = function () {
+      return "Welcome to Anonymous functions !";
+    };
+
+    document.write("<h1>"+my_fun+"</h1>");
+    document.write("<h1>"+my_fun()+"</h1>");
+
+</script>
+
+
+-->
+
+<!--<script>
+    var my_fun = function () {
+        return function () {
+            return "Welcome to Closures Introduction !";
+        };
+    };
+
+    console.log(my_fun()());
+
+</script>-->
+
+
+
+<script>
+    var fun_one = function (arg1,arg2) {
+        console.log( arg1()+arg2() );
+    };
+
+    fun_one(function(){return 10;}, function(){return 20;});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

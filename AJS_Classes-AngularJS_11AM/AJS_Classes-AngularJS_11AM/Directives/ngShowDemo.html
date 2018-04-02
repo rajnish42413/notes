@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app" ng-controller="ctrl">
+    <p ng-repeat="x in [10,20,30,40,50]">
+        {{x}}
+        <button ng-show="$first" ng-click="clickMe(x)">First</button>
+        <button ng-show="$last" ng-click="clickMe(x)">Last</button>
+    </p>
+
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script>
+        var app = angular.module("app",[]);
+
+        app.controller("ctrl",ctrl);
+        function ctrl($scope) {
+            $scope.clickMe = function (arg1) {
+                alert(arg1);
+            };
+        };
+
+
+
+    </script>
+</html>
