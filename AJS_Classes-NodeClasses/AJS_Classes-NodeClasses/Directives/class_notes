@@ -1,0 +1,36 @@
+Directives:
+    - Directives in angular enhances the HTML Capabilities.
+
+    - we have two types of directives
+
+        1. predefined directives
+
+        2. custom directives
+
+predefined directives:
+
+    - the directives given by the framework called as predefined directives.
+
+
+1. ngModel
+
+    - this directive used to implement the 2 way data binding.
+
+    - automatic data synchronisation between model and view with the observation of controller /component called as 2 way data binding
+
+    - ngModel Directive available in FormsModule class
+
+    - FormsModule class available in "@angular/forms" module.
+
+
+
+@Component({
+    selector:"my-app"
+    templateUrl:"./example1.html"
+})
+export class Directives_Example1{
+    model_one:number=0;
+    model_two:number=0;
+}
+
+

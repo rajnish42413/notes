@@ -1,0 +1,134 @@
+<!--
+<script type="text/javascript">
+
+    var var_one=function(){
+        document.write("Welcome to anonymous function");
+    };
+
+
+    console.log(var_one);
+    var_one();
+
+ </script>-->
+
+
+<!--
+<script type ="text/javascript">
+    var var_one=function(arg1,arg2,arg3){
+        document.write(arg1+"<==>"+arg2+"<==>"+arg3+"<br>");
+    }
+    var_one("Angular4","NodeJS","MongoDB");
+    var_one("AngularJS","NodeJS","MongoDB");
+</script>-->
+
+
+
+<!--
+<script type="text/javascript">
+
+   var var_two=function () {
+        return "welcome to anonymous function"
+   }
+
+   var result= var_two();
+   document.write(result);
+
+</script>
+-->
+
+<!--<script type="text/javascript">
+
+    var func_one=function(arg1,arg2){
+
+        return arg1+arg2;
+
+    }
+    var result = func_one(10,20);
+    document.write(result);
+
+</script>-->
+
+<!--<script type="text/javascript">
+  var var_one=function () {
+      return var_two;
+
+
+  }
+
+  var var_two=function () {
+      document.write("welcome to second anonymous func");
+  }
+
+ /* var def = var_one();
+  def();*/
+
+ var_one()();
+
+</script>-->
+
+
+<!--<script type="text/javascript">
+    var anony=function(arg1){
+        return arg1;
+    };
+
+    var func_one = function () {
+        document.write("welcom to anonmyous functions");
+    };
+   //anony(func_one());
+    var result=anony(func_one);
+    result();
+</script>-->
+
+
+<script type="text/javascript">
+
+    var fun_one = function (arg1,arg2,arg3) {
+        document.write(arg1()() +"<..>"+arg2()()+"<..>"+arg3()());
+    };
+
+
+    var fun_two = function () {
+        return function () {
+            return "angular4";
+        };
+    };
+
+
+    var fun_three = function () {
+        return function () {
+          return "nodejs";
+        };
+    };
+
+    var fun_four = function () {
+        return function () {
+            return "mssql";
+        };
+    };
+    fun_one(fun_two,fun_three,fun_four);
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

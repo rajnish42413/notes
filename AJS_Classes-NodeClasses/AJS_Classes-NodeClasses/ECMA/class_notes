@@ -1,0 +1,246 @@
+TypeScript:
+-----------
+
+    - TypeScript is the programming language
+    - Superset of Javascript called as TypeScript(ECMA)
+    - TypeScript used to build either Angular2/Angular4 Applications
+    - We can compile TypeScript files by using TSC compiler
+    - Whenever we compile TypeScript, it will give equivalent javascript
+
+
+JS:
+---
+
+var i = 100;
+console.log(i);  //100
+
+
+if(true){
+    var i = 200;
+    console.log(i);  //200
+}
+
+console.log(i);   //100
+
+TypeCasting in TypeScript
+--------------------------
+var var_one:string = "100";
+var var_two:number = var_one;  // TS2322.
+var var_two:number = <number><string>var_one;
+
+
+classes in type script:
+-----------------------
+    ***********************
+class Class_One{
+    var_one:string;
+    constructor(name:string){
+        this.var_one=name;
+    }
+}
+
+var obj = new Class_One("Angular4");
+
+console.log(obj.var_one);  //Angular4
+
+    ************************
+
+
+class Class_One{
+    var_one:string;
+    constructor(name:string){
+        this.var_one=name;
+    }
+    getData():string{
+        return this.var_one;
+    }
+}
+
+var obj:Class_One = new Class_One("Angular4");
+console.log(obj.getData());
+
+    **************************
+
+
+class Class_One{
+    var_one:string;
+    constructor(arg1:string){
+        this.var_one = arg1;
+    }
+}
+
+
+class Class_Two extends Class_One{
+
+}
+
+var obj = new Class_Two("Angular4");
+console.log(obj.var_one);   //Angular4
+
+    ******************************
+
+class Class_One{
+    var_one:string;
+    constructor(arg1:string){
+        this.var_one = arg1;
+    }
+}
+
+
+class Class_Two extends Class_One{
+
+}
+
+class Class_Three extends Class_Two{
+
+}
+
+var obj = new Class_Three("Angular4");
+console.log(obj.var_one);   //Angular4
+
+    ********************************
+
+
+class Class_One{
+    fun_one():string{
+        return "Class_One";
+    }
+}
+
+class Class_Two extends Class_One{
+    fun_one():string{
+        super.fun_one();
+        return "Class_Two";
+    }
+}
+
+var obj = new Class_Two();
+obj.fun_one();   //Class_One
+                 //Class_Two
+
+
+var obj_one = new Class_One();
+obj_one.fun_one();  //Class_One
+
+
+functions in ECMA Script:
+-------------------------
+    - set of business logic classed as function.
+
+    - by using functions we can reuse the business logic.
+
+//create the function.
+fun_name(){
+    //Business Logic
+}
+
+//call the function.
+fun_name();
+
+
+Ex_1:
+    greet(){
+        return "Welcome !";
+    }
+
+    greet(); //Welcome !
+
+
+Ex_2:
+    greet():string{
+        return "welcome !";
+    }
+    greet();  //welcome !
+
+
+Ex_3:
+    fun_one(arg1:number,arg2:number):void{
+        console.log(arg1+arg2);
+    }
+
+    fun_one(100,200);
+
+
+Ex_4:
+    fun_one(arg1:fun_two):fun_two{
+        return arg1;
+    }
+
+    fun_two():string{
+        return "Welcome !";
+    }
+
+    fun_one(fun_two());
+
+
+Ex_5:
+    fun_one(arg1,arg2,arg3):string{
+        return arg1+"<==>"+arg2+"<==>"+arg3;
+    }
+
+    fun_two():string{
+    return "argularJS";
+    }
+
+   fun_three():string{
+   return "NodeJS";
+
+   }
+ fun_four():string{
+ return "MYSQL";
+
+ }
+
+    fun_one(fun_two(),fun_three(),fun_four());
+
+ Ex_6:
+        fun_one():any{
+        return {
+            "Name1": "Gopi" ,
+            "Name2":"Raja",
+            "Name3":"Shoaib"
+        };
+        }
+
+
+    console.log(fun_one().Name1+fun_one().Name2+fun_one().Name3);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

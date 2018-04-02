@@ -1,0 +1,116 @@
+"http://github.com/ajsnaresh/AJS_Classes.git"
+Branch : Node_Classes
+
+functions:
+    - functions are the set of statements
+    - functions are meant for implementing the business logic
+    - by using we can reuse the business logic
+    - We have two types of functions
+       1.Named JS Functions
+       2.Anonymous JS Functions
+       3. Arrow Functions (ECMA6)
+
+   Named JS Functions: The function with the name called as named JS Functions
+   Anonymous JS Functions: The functions without a name called as Anonymous Functions
+
+
+Syntax.
+    //create the function
+    function fun_name(){
+        //Business Logic.
+    };
+
+    //calling the function.
+    fun_name();
+
+
+functions with return value
+---------------------------
+
+    - generally each function at the end of the defination will return the result.
+
+    - we can return the result with the help of "return" statement.
+
+
+Syntax.
+
+    //creating the function
+    //defination of function
+    function fun_name(){
+        //Business Logic
+        return "result";
+    }
+
+
+    //call the function.
+    var result = fun_name();
+    console.log(result);
+
+
+
+
+functions with arguments
+------------------------
+
+    - while writing the defination of function we can pass the arguments to functions.
+
+
+Syntax.
+    //function defination
+    function fun_name(arg1,arg2,arg3,......){
+        //Business Logic;
+    }
+
+
+    //call the function
+    fun_name(arg1,arg2,arg3,.....)
+
+
+
+
+Anonymous functions:
+--------------------
+    - The function without a name called as Anonymous functions
+
+Syntax.
+    //creating the anonymous function
+    var fun_one = function(){
+        //Business Logic.
+    };
+
+    //call the anonymous function
+    fun_one();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,127 @@
+<!--
+<script type = "text/javascript">
+    var obj = {
+        "name": "ram",
+        "age" : 22,
+        "id": 2321
+    }
+
+    document.write(obj.name+"<br>"+obj.age+"<br>"+obj.id);
+
+
+</script>-->
+
+
+<!--<script type = "text/javascript">
+
+    function json() {
+        obj1 =  {
+            "color": "blue",
+            "text": "black"
+        };
+        return obj1;
+    }
+
+   var my_obj = json();
+
+    document.write("<h1>"+my_obj.color+"...."+my_obj.text+"</h1>");
+
+
+</script>-->
+
+
+
+<!--
+    Ex.
+      -Create JSON object
+      -Create products array in JSON object
+      -Create five anonymous JSON objects in products array
+      -Create three key value pairs in each anonymous object, keys are product ID, product Name, product Cost
+
+<script type  = "text/javascript">
+
+   var obj = {
+       "products": [
+           {"p_id": 111, "p_name": "product_1","p_cost":10000},
+           {"p_id": 222, "p_name": "product_2","p_cost":20000},
+           {"p_id": 333, "p_name": "product_3","p_cost":30000},
+           {"p_id": 444, "p_name": "product_4","p_cost":40000},
+           {"p_id": 555, "p_name": "product_5","p_cost":50000}
+       ]
+   };
+
+   console.log(obj.products.length);  //5
+   console.log(obj.products[0]);  //first json object
+   console.log(obj.products[0].p_cost);  //10000
+   console.log(obj.products[4].p_cost);  //50000
+
+   var result="";    //111
+    for(var i=0;i<obj.products.length;i++){
+        var my_obj = obj.products[i];
+        var __pid = my_obj.p_id;    //555
+        var __pname = my_obj.p_name;
+        var __pcost=my_obj.p_cost;
+        result+=__pid+"  "+__pname+"  "+__pcost+"<br>";
+    }
+    document.write(result);
+
+</script>
+
+-->
+
+<!--
+    -Create anonymous JavaScript function
+
+    -Anonymous JavaScript function should return the anonymous JSON object
+
+    -Anonymous JSON object should contain three key value pairs,
+    keys are fun_one, fun_two and fun_three,
+    values are following functions definitions fun_one, fun_two anf fun_three
+
+-->
+<script type ="text/javascript">
+    var anony_fun = function(){
+        return {
+            "fun_one": fun_one,
+            "fun_two":fun_two,
+            "fun_three":function () {
+                return 300;
+            }
+        };
+    };
+
+    function fun_one() {
+        return 100;
+    }
+
+    function fun_two() {
+        return 200;
+    }
+    //var obj = anony_fun();
+    document.write(anony_fun().fun_one()+anony_fun().fun_two()+anony_fun().fun_three());
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

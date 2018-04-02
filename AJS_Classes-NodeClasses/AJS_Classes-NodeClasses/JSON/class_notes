@@ -1,0 +1,111 @@
+JSON:
+
+    - JSON Stands for Java Script Object Notation.
+
+    - JSON Used to Carry data over the Network.
+
+    - We can carry the data over the network by using either XML / JSON Also.
+
+    - JSON is the ligth weigth compared to XML.
+
+Syntax of JSON:
+---------------
+1. Objects   ---- { }
+
+
+2. Arrays    ----  [ ]
+
+
+3. data     -----  key&value
+
+
+
+Objects:
+    - we can represent the JSON Objects by using { }.
+
+    - we have two types of Objects
+
+        1. Anonymous JSON Objects.
+
+        2. Named JSON Objects.
+
+1. Anonymous JSON Objects.
+
+    - The JSON Object without name called as Anonymous Object.
+
+    Ex.
+        {
+
+        }
+
+
+
+2. Named JSON Object
+
+    - The JSON Object With Name Called as Named JSON Object.
+
+
+    Ex.
+
+        "my_obj":{
+
+        }
+
+
+
+
+Arrays:
+
+    - We can Represent the Arrays by using [ ].
+
+    - we have two types of Arrays.
+
+        1. Named JSON Array
+
+            The Array with Name called as Named JSON Array.
+
+            Ex.
+                "emp":[
+
+                ]
+
+        2. Anonymous JSON Array.
+
+            The Array without name called as Anonymous JSON Array.
+
+            Ex.
+                [
+
+                ]
+
+
+
+
+
+Data
+----
+    - we can store the data in the form of a key&value pairs.
+
+    - each "key&value" pairs separated with the help of comma (,)
+
+    - key&value separated with the help of colon (:)
+
+
+
+Ex_1:
+
+{
+    "key_one":"AngularJS",
+    "key_two":"NodeJS",
+    "key_three":"MongoDB"
+}
+
+[Note : in general server will prepare the JSON]
+
+
+
+
+
+
+
+

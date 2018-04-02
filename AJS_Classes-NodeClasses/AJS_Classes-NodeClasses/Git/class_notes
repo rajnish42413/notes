@@ -1,0 +1,222 @@
+1. Repository
+
+	GitHub
+
+
+2. Introduction
+
+	1. What is JavaScript
+
+	2. Advantages Of JavaScript
+
+	3. Disadvantages Of JavaScript
+
+	4. Key Features Of JavaScript
+
+	5. Comparision Of JavaScript - jQuery
+
+					  JavaScript - Ajax
+
+					  JavaScript - AngularJS
+
+
+3. variables in JavaScript
+
+
+4. Functions in JavaScript
+
+		- Anonymous Functions
+
+		- Named Functions
+
+
+
+5. Classes in JavaScript
+
+		- User Defined Classes
+
+		- Predefined Classes
+
+
+6. Closures in JavaScript
+
+
+7. Alert Messages With JavaScript.
+
+
+8. POC  (Proof Of Concept) (Mini Project)
+
+
+
+
+GitHub:
+-------
+
+	- GitHub is the Open source repository maintained by google
+	- Repository mainly for Collborate thework flow
+	EX: SVN,CVS,Clearcase,VSS and so on...
+
+
+GitHub Operations:
+------------------
+
+1. Install the Git
+
+2. create the Repository Locally.
+
+3. Add the user credentials to the Repository.
+
+4. create the files to the Repository.
+
+5. commit the files / changes to the Repository
+
+6. Create the Branch
+
+7. Merge the Branch
+
+8. integration of Cloud Repositories.
+
+9. Commit the Code to Cloud Repository.
+
+10. Push the Code to Cloud Repository
+
+11. Pull the Code From Cloud Repository.
+
+
+
+1. Installation Of Git:
+-----------------------
+
+	- Git is the interface tool used to interact with the GitHub.
+
+website : https://git-scm.com/download/win
+
+file name : Git-2.14.1-64-bit.exe
+
+
+2. Create the Repository Locally.
+---------------------------------
+
+	- create the folder
+
+		Ex.
+
+			github demo
+
+	- execute the following command on "GitBash Here" terminal
+
+		> git init
+
+
+[Note : when ever we execute above command automatically "github demo" behaves like local repository]
+
+
+3. Add the user credentials to the Repository.
+
+User Name:
+----------
+> git config --global user.name "Samba"
+
+
+User Email:
+-----------
+> git config --global user.email "samba.pendela@gmail.com"
+
+
+
+3. create the files to the repository
+-------------------------------------
+
+> touch sample.js
+
+[Note : automatically "sample.js" file will be created in repository]
+
+
+> git status
+	- knowing the status of files in repository
+
+[Note : red color lebels indicating the untracked files]
+
+
+4. commit the files to the repository.
+--------------------------------------
+
+> git add sample.js
+
+> git commit
+
+> press "i"
+
+> type "initial commit"
+
+> press "ESC"
+
+> type ":wq"
+
+> press "Enter"
+
+From second commit onwards follow the below commands
+----------------------------------------------------
+1) Git add sample.js
+2) Git commit -m " Code added "
+
+Know the log
+------------
+Git log
+
+
+create the branch:
+-----------------
+>git branch branch_one
+
+
+checkout the branch
+--------------------
+>git checkout branch_one
+
+
+
+Merge the branches
+------------------
+git merge branch_one
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

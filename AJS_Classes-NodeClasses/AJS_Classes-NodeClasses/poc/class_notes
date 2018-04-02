@@ -1,0 +1,352 @@
+1. Design the DataBase.
+
+>create schema poc;
+
+>use poc;
+
+>create table login_details(uname varchar(20),upwd varchar(20));
+
+>insert into login_details values("admin","admin");
+
+
+2. create the node server.
+
+    - nodejs is the server side scripting language.
+
+    - by using nodejs , we can create the http & tcp servers.
+
+    - nodejs will support the modules.
+
+1. express
+
+    - this module used to develop the webservices.
+
+2. mysql
+
+    - this module used to interact with the mysql database.
+
+3. mongodb
+
+    - this module used to interact with the mongodb.
+
+4. body-parser
+
+    - this module used to set the MIME Type.
+
+5. fs
+
+    - this module used to interact with the flat files.
+
+    Ex.
+        static json files
+
+        static text files
+
+        static xml files
+
+            --
+            --
+            --
+
+6. http
+
+    - this module used to create the http servers.
+
+
+7. multer
+
+     - this module used to handle the multimedia images.
+
+8. jwt-simple
+
+    - this module used to maintain the token based authentication system.
+
+
+
+- generally we will use "package.json" file to download the required modules.
+
+- we can use the following command "npm install" to execute the package.json file.
+
+- when ever we call the "npm install" automatically all the modules will be downloaded to "node_modules" folder.
+
+
+
+package.json
+------------
+{
+    "name":"sindu",
+    "version":"1.0.0",
+    "description":"poc implementation",
+    "dependencies":{
+        "express":"latest",
+        "mysql":"latest",
+        "mongodb":"latest",
+        "body-parser":"latest",
+        "jwt-simple":"latest"
+    }
+}
+
+
+>npm install
+
+
+server.js
+---------
+
+//import modules.
+var express = require("express");
+var mysql = require("mysql");
+var mongodb = require("mongodb");
+var bodyparser = require("body-parser");
+var jwt = require("jwt-simple");
+
+
+//create the server instance
+var app = express();
+
+//set the mime type  (json)
+app.use(bodyparser.json());
+
+//deploy the application
+app.use(express.static(__dirname+"/../poc"));
+
+//create the connection object.
+var connection = mysql.createConnection({
+    "host":"localhost",
+    "user":"root",
+    "password":"root",
+    "database":"poc"
+});
+
+
+//connect to database.
+connection.connect();
+
+
+//create the REST API.
+app.post("/login",function(req,res){
+    //user name
+    var uname = req.body.uname;
+
+    //password
+    var upwd = req.body.upwd;
+
+    connection.query("select uname from login_details where uname='"+uname+"'", function(err,recordsArray,fields){
+        if(recordsArray.length > 0){
+               var token = jwt.encode({'uname':uname},'hr@tcs.com');
+               res.send({'login':'success','token':token});
+        }else{
+            res.send({'login':'fail'});
+        }
+    });
+
+});
+
+//assign the port no.
+app.listen(8080);
+console.log("server listening the port no.8080");
+
+
+
+
+
+
+
+
+
+3. download angular modules.
+
+1. ui.router
+
+    - this module used to implement the routing in single page application.
+
+2. ngStorage
+
+    - this module used to implement the storages in angular applications.
+
+
+3. ngMessages
+
+    - this module used to implement the client side form validations.
+
+
+        ---
+        ---
+
+  - we can download the modules by using "bower.json" file.
+
+  - we can execute the "bower.json" file by using bower install command.
+
+  - when ever we call the "bower install" automatically all the modules downloads to "bower_components" folder.
+
+
+
+  Ex.
+
+    bower.json
+
+    {
+        "name":"nareshit",
+        "dependencies":{
+            "angular":"latest",
+            "angular-ui-router":"latest",
+            "ngstorage":"latest"
+        }
+    }
+
+> bower install
+
+4. create the app module.
+
+app.js
+------
+var app = angular.module("app",["ui.router","ngStorage"]);
+
+
+5. implement the service.
+
+app.service("loginService",loginService);
+function loginService($http){
+    this.authenticate = function(obj){
+            return $http.post("http://localhost:8080/login",obj).then(function(posRes){
+                return posRes;
+            },function(errRes){
+                return errRes;
+            });
+    }
+}
+
+
+6. implement the controller
+
+loginController.js
+------------------
+
+app.controller("loginController"loginController);
+function loginController($scope,loginService){
+    $scope.obj = {};
+    $scope.login = function(){
+        loginService.authenticate($scope.obj).then(function(res){
+            console.log(res);
+        });
+    };
+};
+
+7. create the login.html file.
+
+<form ng-submit="login()">
+    <label>Uname.</label>&emsp;&emsp;&emsp;&emsp;
+    <input type="text" ng-model="obj.uname">
+
+    <br><br>
+    <label>Upwd.</label>&emsp;&emsp;&emsp;&emsp;
+    <input type="password" ng-model="obj.upwd">
+
+    <br><br>
+    <input type="submit">
+
+</form>
+
+
+8. Implement the Single Page Application
+
+    create the target templates
+
+    ----------------
+    templates
+        login.html
+        home.html
+    ----------------
+
+
+    home.html
+
+    <h1>{{var_one}}</h1>
+
+
+    create the controllers
+
+    -------------------
+    loginController.js
+    homeController.js
+    -------------------
+
+    homeController.js
+
+    app.controller("homeController",homeController);
+    function homeController($scope){
+        $scope.var_one = "Welcome to Home Page !";
+    }
+
+    implement the following mapping.
+
+    -------------------------
+    login.html ===> loginController
+    home.html ===> homeController
+    --------------------------
+
+
+    config.js
+    -
+    app.config(config);
+    function config($stateProvider,$urlRouterProvider){
+        $stateProvider.state("login" , {url:"/login" , templateUrl:"templates/login.html",controller:"loginController"})
+                      .state("home" , {url:"/home" , templateUrl:"templates/home.html",controller:"homeController"});
+        $urlRouterProvider.otherwise("/login");
+    };
+
+    create the source template
+    --------------------------
+    index.html
+    ----------
+    <html ng-app="app">
+        <div ui-view></div>
+    </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

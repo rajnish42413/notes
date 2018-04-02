@@ -1,0 +1,15 @@
+1. if statement
+
+2. if-else statement
+
+3. elseif statement
+
+
+    - By using conditional statements we can write the conditions in applications.
+
+if statement
+------------
+
+if(boolean){
+    //Business Logic
+}

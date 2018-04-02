@@ -1,0 +1,102 @@
+Variables:
+
+    - variables are used to store the data.
+
+    - in general we will declare the variables in javascript by using "var" keyword.
+
+    - By using variables we can store  all categories of data
+
+    Ex.
+        integer data.
+        string data.
+        float data.
+        objects
+
+            --
+            --
+            --
+
+     //Storing the string data
+     var data = "Welcome to JavaScript !";
+
+    //Storing the integer data
+    var data = 100;
+
+    //Storing the float data
+     var data = 100.1;
+
+    //Storing the objects
+     var data = new my_obj();
+
+    //Storing the JSON objects
+     var data = {'name_one':'bharat','name_two':'vinay','name_three':'mono'};
+
+
+ display the data on browser console:
+ ------------------------------------
+ console.log("Welcome to JavaScript !");
+
+
+ display the data on webpage(html page)
+ --------------------------------------
+ document.write("Welcome to JavaScript !");
+
+
+ Getting the References of HTML Elements to JavaScript:
+ ------------------------------------------------------
+ <h1 id="first_h1"></h1>
+ <h1 id="second_h1"></h1>
+ <h1 id="third_h1"></h1>
+
+
+ document.getElementById("first_h1").innerHTML = "Data From MySQL DB Soon...!";
+
+ document.getElementById("second_h1").innerHTML="Data from Mango DB soon";
+
+ document .getElementById("third_h1").innerHTML = "Data from Cassandra DB soon..!";
+
+
+ - we can include the javascript into webpage by using "<script></script>" tag.
+
+ Ex.
+
+    <script type="text/javascript">
+
+        //Business Logic.
+
+    </script>
+
+
+ - we have two types of variables.
+
+       1. global variables
+
+       2. local variables
+
+1. Global variables are available to application scope.
+    Ex.4
+        <script type="text/javascript">
+            var data = "Data From DN Soon....";
+            var name="hello";
+
+            if(name=="hello"){
+                console.log(data);
+                var var_one = "i am local variable";
+                console.log(var_one);
+            }
+
+            console.log(var_one);
+
+        </script>
+
+2. local variables are available perticular block in application.
+
+
+
+
+
+
+
+
+
+

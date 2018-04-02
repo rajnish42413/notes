@@ -1,0 +1,1 @@
+console.log(var_one+"<==>"+var_two+"<==>"+var_three);

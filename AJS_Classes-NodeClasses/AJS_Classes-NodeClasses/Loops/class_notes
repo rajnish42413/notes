@@ -1,0 +1,18 @@
+Loops in JavaScript/ iteration statements in javascript:
+--------------------------------------------------------
+
+1. for loop
+
+2. while loop
+
+3. do-while loop
+
+    loops in javascript are used to iterate the business logic required number of times.
+
+
+for loop:
+---------
+
+for(initilization;condition;increment/decrement){
+    //Iteratable Statements
+}

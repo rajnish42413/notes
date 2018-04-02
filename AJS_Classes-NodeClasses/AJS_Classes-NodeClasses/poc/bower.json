@@ -1,0 +1,9 @@
+{
+  "name":"poc",
+  "dependencies":{
+    "angular":"latest",
+    "angular-ui-router": "0.2.18",
+    "ngstorage":"latest"
+
+  }
+}

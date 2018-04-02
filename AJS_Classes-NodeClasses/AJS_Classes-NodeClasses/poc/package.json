@@ -1,0 +1,12 @@
+{
+  "name": "poc",
+  "version": "0.0.1",
+  "dependencies": {
+    "express":"^4.15.4",
+    "mysql": "^2.14.1",
+    "mongodb": "^2.2.31c",
+    "body-parser": "^1.17.2",
+    "jwt-simple": "^0.5.1"
+    
+  }
+}
