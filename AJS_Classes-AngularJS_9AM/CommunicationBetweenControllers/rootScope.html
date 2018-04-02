@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+    <div ng-controller="ctrl_one">
+        <button ng-click="clickMe('For Controller Two')">Click Me</button>
+    </div>
+    <br><br>
+    <div ng-controller="ctrl_two">
+        <h1 style="color: red" ng-bind="var_one"></h1>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.min.js"></script>
+    <script>
+        angular.module("app",[]).controller("ctrl_one",function ($scope) {
+           $scope.clickMe = function (data) {
+             $scope.my_fun(data);
+           };
+        }).controller("ctrl_two",function ($scope,$rootScope) {
+            $rootScope.my_fun = function (data) {
+              $scope.var_one = data;
+            };
+        });
+    </script>
+</html>

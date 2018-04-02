@@ -1,0 +1,96 @@
+Step 1.
+
+    Create the database in MingoDB.
+
+    database : mini_project
+
+    collection : login_details
+
+    Insert Object : {"uname":"admin" , "upwd" : "admin"}
+
+Start the Server.
+    >mongod
+
+Client Connection.
+    >mongo
+
+
+>use mini_project;
+
+>db.createCollection("login_details");
+
+>db.login_details.insert({"uname":"admin" , "upwd" : "admin"});
+
+>db.login_details.find()
+
+
+
+Step 2.
+-
+    Create the Post URL in NodeJS.
+    -
+    var mongodb = require("mongodb");
+    var mongoClient = mongodb.mongoClient;
+    var jwt = require("jwt-simple");
+    var tokens=[];
+    app.post("/login" , function(req,res){
+        var uname = req.body.u_name;
+        var upwd  = req.body.u_pwd;
+        mongoClient.connect("mongodb://localhost:27017/mini_project",function(err,db){
+            var collection = db.collection("login_details");
+            collection.find().toArray(function(err,array){
+                if(array[0].uname == uname && array[0].upwd == upwd){
+                       var token = jwt.encode({"uname":uname} , "tcs@admin.com");
+                       tokens.push(token);
+                       res.send({"login":"success", "token":token});
+                }else{
+                     res.send({"login":"failure"});
+                }
+            });
+        });
+    });
+
+
+
+Step 3.
+
+    Create the Single Page Application with the Following Templates.
+
+    1.login.html
+    2.home.html
+
+
+Step 4.
+
+    Implement the logout option in home.html
+
+
+Step 5.
+    Implement the Interceptors to Handle wrong routings
+
+    - interceptors will execute before each routing.
+
+    - "$stateChangeStart" is the name of the interceptor.
+
+    - in genaral we will implement interceptors by using rootScope.
+
+
+config.js
+-
+
+app.run(run).config(config);
+run.$inject=["$rootScope","$localStorage","$location"];
+function run($rootScope,$localStorage,$location){
+    $rootScope.$on("$stateChangeStart",function(event,fromState,fromParams,toState,toParams){
+
+        if( ! $localStorage.mini_project){
+            $location.path("/login");
+        };
+    }
+}
+
+
+Implement the Nested Routing.
+
+
+

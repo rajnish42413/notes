@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+    <div ng-controller="parent_controller">
+
+        <label>Child One.</label>&emsp;&emsp;&emsp;&emsp;&emsp;
+        <input type="text" ng-model="child_one">
+
+        <br><br>
+        <label>Child Two.</label>&emsp;&emsp;&emsp;&emsp;&emsp;
+        <input type="text" ng-model="child_two">
+
+        <br><br>
+        <button ng-click="clickMe(child_one,child_two)">Click Me</button>
+
+        <br><br>
+        <h1 ng-controller="child_one" style="color: red" ng-bind="var_one"></h1>
+
+        <br><br>
+        <h1 ng-controller="child_two" style="color: green" ng-bind="var_two"></h1>
+
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.min.js"></script>
+    <script>
+        angular.module("app",[])
+            .controller("parent_controller",function ($scope) {
+                $scope.clickMe = function (arg1,arg2) {
+                    var my_obj = {"child_one":arg1,"child_two":arg2};
+                    $scope.$broadcast("my_obj",my_obj);
+                };
+        }).controller("child_one",function ($scope) {
+            $scope.$on("my_obj",function (event,res) {
+                $scope.var_one = res.child_one;
+            });
+        }).controller("child_two",function ($scope) {
+            $scope.$on("my_obj",function (event,res) {
+                $scope.var_two = res.child_two;
+            });
+        });
+    </script>
+
+
+
+
+
+
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app" ng-controller="ctrl">
+
+    <label>Uname.</label>&emsp;&emsp;&emsp;&emsp;
+    <input type="text" ng-model="uname">
+
+    <br><br>
+    <label>Upwd.</label>&emsp;&emsp;&emsp;&emsp;
+    <input type="password" ng-model="upwd">
+
+
+    <br><br>
+    <button ng-click="save({u_name:uname,u_pwd:upwd})">Save</button>&emsp;&emsp;&emsp;
+    <button ng-click="read()">Read</button>&emsp;&emsp;&emsp;
+    <button ng-click="delete()">Delete</button>&emsp;&emsp;&emsp;
+
+    <br><br>
+
+    <h1 style="color: red">{{var_one}}</h1>
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/ngstorage/ngStorage.min.js"></script>
+    <script>
+        var app = angular.module("app",["ngStorage"]);
+
+        app.controller("ctrl",ctrl);
+        ctrl.$inject=["$scope","$localStorage","$sessionStorage"];
+        function ctrl($scope,$localStrorage,$sessionStorage) {
+            $scope.save = function (obj) {
+                $localStrorage.demo=obj;
+                window.localStorage.setItem("demo",JSON.stringify(obj));
+            };
+
+            $scope.read = function () {
+              $scope.var_one = $localStrorage.demo.u_name+"..."+
+                               $localStrorage.demo.u_pwd+"...."+
+                               JSON.parse(window.localStorage.getItem("demo")).u_name+"..."+
+                               JSON.parse(window.localStorage.getItem("demo")).u_pwd;
+            };
+
+
+            $scope.delete = function () {
+              delete $localStrorage.demo;
+              delete $localStrorage.my_project;
+              delete $localStrorage.workshop;
+
+              window.localStorage.removeItem("demo");
+              window.localStorage.removeItem("my_project");
+            };
+        }
+    </script>
+
+</html>

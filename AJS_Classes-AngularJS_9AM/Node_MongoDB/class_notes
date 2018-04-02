@@ -1,0 +1,99 @@
+Start the MongoDB Server.  (Open in Terminal)
+
+C:\Program Files\MongoDB\Server\3.4\bin > mongod
+
+    Automatically MongoDB Server Will Start.
+
+Step 2.
+
+    Create the Client and Connect to Server. (Open in Another Terminal)
+
+Ex.
+    C:\Program Files\MongoDB\Server\3.4\bin > mongo
+
+    Note. Automatically Client will connect to Mongo Server.
+
+
+1.create the database.
+
+>use node_db;
+
+    - Automatically node_db will creates and Switched
+
+      to node_db automatically.
+
+
+2.show the number of databases (All the DB'S).
+
+>show dbs;
+
+    will show all the available db's in Node.
+
+    [Note. db with empty data won't show]
+
+
+3.drop the DataBase.
+
+>db.dropDatabase();
+
+    Automatically database will be dropped [current database]
+
+
+
+4.create the collection.
+
+>db.createCollection("emp");
+
+
+5.Insert the Data into emp collection.
+
+>db.emp.insert({"id":1,"name":"Hello_1","age":20});
+
+
+
+6.Query the collection.
+
+>db.emp.find()
+
+
+var express = require("express");
+
+var mongodb = require("mongodb");
+
+var bodyparser = require("body-parser");
+
+var app = express();
+
+app.use(express.static(__dirname+"/../Day@24");
+
+app.use(bodyparser.json());
+
+var mongoClient = mongodb.MongoClient;
+
+app.get("/",function(req,res){
+    mongoClient.connect("mongodb://localhost:27017/node_db",
+                    function(err, db){
+            var collection = db.collection("emp");
+
+            /*collection.find().toArray(function(err, doc){
+                response.subjects = doc;
+                console.log(response);
+                res.send(response);
+            });*/
+
+            res.send(collection);
+            db.close();
+    });
+});
+
+
+
+
+
+
+
+
+
+
+
+

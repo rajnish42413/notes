@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+
+    <div ng-include="'ctrl_one.html'"></div>
+    <br><br>
+    <div ng-include="'ctrl_two.html'"></div>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.min.js"></script>
+    <script>
+        var app = angular.module("app",[]);
+        app.service("my_service" , my_service);
+        function my_service() {
+            this.var_one="";
+            this.setVarOne = function (data) {
+              this.var_one=data;
+            };
+            this.getVarOne=function () {
+                return this.var_one;
+            };
+        }
+
+        app.controller("ctrl_one" , ctrl_one);
+        ctrl_one.$inject=["$scope","my_service"];
+        function ctrl_one($scope,my_service){
+            $scope.setData = function(data){
+                my_service.setVarOne(data);
+            }
+        }
+
+
+        app.controller("ctrl_two",ctrl_two);
+        ctrl_two.$inject=["$scope","my_service"];
+        function ctrl_two($scope,my_service) {
+            $scope.getData =  function () {
+                $scope.var_one = my_service.getVarOne();
+            };
+        };
+
+    </script>
+</html>

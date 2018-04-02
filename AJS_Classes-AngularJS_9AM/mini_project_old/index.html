@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html ng-app="app" dir="ltr" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+	<!-- Stylesheets
+	============================================= -->
+
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/style.css">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!--[if lt IE 9]>
+		<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+	<![endif]-->
+
+	<!-- Document Title
+	============================================= -->
+	<title>Home | VRSS</title>
+
+
+</head>
+
+<body>
+
+	<!-- Document Wrapper
+	============================================= -->
+	<div class="wrap">
+		<div class="container">
+      <form class="form-horizontal" action='' method="POST" ng-submit="login_details({'u_name':uname,'u_pwd':upwd})">
+<h3 class="mnone">Login</h3>    
+<hr>
+                            <!-- Username -->
+                            <div class="form-group">
+                              <label for="username">Username</label>
+                              <input type="text" id="username" name="username" placeholder="" class="form-control" ng-model="uname">
+                            </div>
+                            <!-- Password-->
+                            <div class="form-group">
+                            <label class="control-label" for="password">Password</label>
+                              <input type="password" id="password" name="password" placeholder="" class="form-control" ng-model="upwd">
+                            </div>
+     
+                          <div class="form-group">
+                            <!-- Button -->
+                            <div class="controls">
+                              <button class="btn btn-success">Login</button>
+                      <a href="register.html" class="pull-right" style="padding-top: 15px;">Register</a>
+                            </div>
+                          </div>
+                      </form>  
+    </div>
+	</div>
+
+	<!-- External JavaScripts
+	============================================= -->
+	<script type="text/javascript" src="js/jquery.js"></script>
+
+	
+</body></html>

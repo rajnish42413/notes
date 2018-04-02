@@ -1,0 +1,67 @@
+Reading the Data From the MySQL DataBase By using NodeJS.
+
+    - mysql is the predefined module used to read the data from MySQL DataBase.
+
+Steps to Read the Data From DataBase.
+
+Step 1.
+     Create the schema in DataBase.
+
+     Ex.
+
+        node
+
+     create schema node;
+
+Step 2.
+
+    Create the Emp Table in Schema.
+
+    use node;
+    create table emp(id int(10), name varchar(20),age int(10));
+
+Step 3.
+
+    Insert the Data into Emp table.
+
+    insert into emp values(1,'Hello_1',20);
+
+
+Step 4.
+
+     Fetch the Data From the DataBase.
+
+     select * from emp;
+
+
+
+Step 5.
+
+    Fetch the Data from DataBase By Using NodeJS.
+
+
+//Import the mysql module.
+var mysql = require("mysql");
+
+//Create the connection object.
+var connection = mysql.createConnection({
+    host:'localhost',
+    user:'root',
+    password:'root',
+    database:'node'
+});
+
+//Connect to DataBase.
+connection.connect();
+
+
+//Fetch the Data.
+connection.query("select * from emp",function(err,records,fields){
+    res.send(records);
+});
+
+
+
+
+
+

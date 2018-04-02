@@ -1,0 +1,443 @@
+Technologies.
+1.Single Page Applications (ui.router)
+2.localStorage
+3.Bootstrap
+4.jQuery
+5.Node Server
+6.MySQL / MongoDB / Cassandra / SQL Server
+7.Interceptors
+8.Token Based Authentication System
+9.Grunt
+10.JBOSS / Tomcat / Weblogic / IIS
+11.TestCases
+
+
+Modules in Mini_Project.
+
+1.login
+
+2.register
+
+3.home
+    login.
+           - login module will compare the user credentials
+
+              in mysql database with node server.
+
+    register.
+           - register module will save the user information in mysql
+
+             with node server.
+
+     home.
+
+            - will interacts with the end user and performs the Required
+              Opearations with Node / Tomcat / IIS with MySQL / MongoDB/ Cassandra
+
+
+Step 1.
+
+    Implement the SPA by using ui.router module.
+
+----------------
+templates
+    login.html
+    home.html
+    register.html
+----------------
+
+----------------------------
+controllers
+    loginController.js
+    homeController.JS
+    registerController.js
+-----------------------------
+
+
+
+Step 2.
+
+    Implement the login.html --->  register.html
+
+                  register.html --->  login.html
+
+login.html
+-
+
+    --
+    --
+    --
+
+    <a ui-sref="register">Register?</a>
+
+
+
+register.html
+-
+
+    ---
+    ---
+    ---
+
+    <a ui-sref="login">Login</a>
+
+
+
+
+Step 3.
+
+    Pass the Data From loginController to loginService.
+
+    "data"  --- > u_name : uname  && u_pwd:upwd
+
+------------
+services
+    loginService.js
+------------
+app.service("loginService",loginService);
+loginService.$inject=["$http"];
+function loginService($http){
+    this.authenicate = function(data){
+        console.log(data);
+    };
+};
+
+
+app.controller("loginController",loginController);
+loginController.$inject=["$scope","loginService"];
+function loginController($scope,loginService){
+    loginService.authenicate(data);
+}
+
+
+
+Step 4.
+    Pass the user credentials to the Server
+    a. Launch the index.html file By using NodeJS.
+
+    b.create post url to accept the user credentials from loginService
+
+    c.create the "user_details" table in "mini_project" schema in mysql
+
+        schema : mini_project
+        table : user_details
+
+
+        > create schema mini_project;
+        > use mini_project;
+        > create table user_details(uname varchar(50),
+                                    fname varchar(50),
+                                    lname varchar(50),
+                                    pwd varchar(20),
+                                    phone varchar(50),
+                                    profile_pic varchar(50),
+                                    gender varchar(20),
+                                    address varchar(100)
+                                    );
+        > insert into user_details values('admin',
+                                          'Naresh',
+                                          'IT',
+                                          'admin',
+                                          '123456',
+                                          'c:\images\logo.png',
+                                          'male',
+                                          'Ameerpet');
+
+
+        d. create the connection object in nodejs.
+
+            > npm install mysql --save
+
+            var mysql = require("mysql");
+            var connection = mysql.createConnection({
+                host:'localhost',
+                user:'root',
+                password:'root',
+                database:'mini_project'
+            });
+            connection.connect();
+
+        e.compare the "user credentials" with "user_details" table.
+
+        //create the post url.
+        app.post("/login/authenicate",function(req,res){
+            var uname = req.body.u_name;
+            connection.query("select uname from user_details where uname='"+uname+"'",
+            function (err,records,fields) {
+                if(records.length>0){
+                    res.send({login:"success"});
+                }else{
+                    res.send({login:"failure"});
+                };
+            });
+        });
+
+
+Step 5.
+
+    Genarate the Token by using jwt-simple module.
+
+    npm install jwt-simple --save
+
+    var jwt = require("jwt-simple");
+    var token  = jwt.encode({"key1":"value1"},"tcs@admin.com");
+    console.log(token);  //unreadable object.
+
+    var obj = jwt.decode(token,"tcs@admin.com");
+    console.log(obj.key1);
+
+
+Step 6.
+
+    Store the token into localStorage.
+
+
+    - AngularJS Supports the two types of Storages.
+
+        1.localStorage
+        2.sessionStorage
+
+    - As a developer explicitely we must delete the data from the localStorage.
+
+    - when ever we close the browser, automatically session Storage will be erased.
+
+    - ngStorage module will provide the both local & session Storages.
+
+    - ngStorage Module have the following services.
+
+        1.$localStorage
+
+        2.$sessionStorage
+
+
+    - $localStorage used to work with the local Storage.
+
+    - $sessionStorage used to work with the session Storage
+
+    - we can persist the Data in the form of a key & value pairs
+
+
+
+Ex.
+    ***********************************************
+    $localStorage.mini_project = {"key1":"value1"};
+     (storage type)               (key)   (value)
+
+    console.log($localStorage.mini_project.key1);  //value1
+
+    delete $localStorage.mini_project;
+   ***********************************************
+
+   $sessionStorage.mini_project = "Hello";
+
+   console.log($sessionStorage.mini_project);  //Hello
+
+   delete $sessionStorage.mini_project;
+
+   ***********************************************
+
+Step 7.
+    Pass the data from register.html file to "registerController"
+Models in register.html.
+-
+1) uname
+2)fname
+3)lname
+4)upwd
+5)ucpwd
+6)uphone
+7)uaddress
+
+user defined function in register.html
+-
+    ng-submit="register({'uname':uname,
+                        'fname':fname,
+                        'lname':lname,
+                        'upwd':upwd,
+                        'ucpwd':ucpwd,
+                        'uphone':uphone,
+                        'uaddress':uaddress})"
+
+app.controller("registerController",registerController);
+registerController.$inject=["$scope","registerService"];
+function registerController($scope,registerService) {
+    $scope.register = function (data) {
+        registerService.register(data);
+    };
+};
+
+Step 8.
+    Pass the Data from registerController to registerService.
+
+    app.service("registerService",registerService);
+    registerService.$inject=["$http"];
+    function registerService($http) {
+        this.register = function (data) {
+            console.log(data);
+        };
+    };
+
+Step 9.
+    Create the Post Request in Node Server.
+    app.post("/register" , function(req,res){
+        var uname = req.body.uname;
+        var fname = req.body.fname;
+        var lname = req.body.lname;
+        var upwd  = req.body.upwd;
+        var uphone = req.body.uphone;
+        var uaddress = req.body.uaddress;
+    });
+
+
+Step 10.
+    Store the user details to the "login_details" table in "mini_project".
+
+
+    "insert into login_details values("'"+uname+"'",
+                                      "'"+fname+"'",
+                                      "'"+lname+"'",
+                                      "'"+upwd+"'",
+                                      "'"+uphone+"'",
+                                      'c:\images\logo.png',
+                                      'male',
+                                      "'"+uaddress+"'")";
+
+
+Home Module.
+
+1.Navigate to home page upto receiving the "success" response from server.
+
+loginController.js
+-
+$scope.login_details = function (data) {
+        loginService.authenicate(data).then(function (response) {
+            $localStorage.my_project=response; //AngularJS Storage
+            if(response.data.login=="success"){
+                $location.path("/home");
+            }else{
+                alert("Invalid Details !");
+            }
+        });
+};
+
+
+2. Implement the Nested Routing
+
+home.html
+-
+<a ui-sref=".emp">Static Data</a>&emsp;&emsp;&emsp;&emsp;
+<a ui-sref=".mysql">MySQL Data</a>&emsp;&emsp;&emsp;&emsp;
+<a ui-sref=".mongodb">MongoDB Data</a>&emsp;&emsp;&emsp;&emsp;
+<button ng-click="logout()">Logout</button>
+
+<br><br>
+
+<div ui-view>
+
+</div>
+
+
+------------------
+templates
+    static.html
+    mysql.html
+    mongo.html
+------------------
+
+--------------------
+controllers
+    staticController.js
+    mysqlController.js
+    mongoController.js
+---------------------
+
+
+
+$stateProvider.state("home.static",{
+    url:"/static",
+    templateUrl:"templates/static.html",
+    controller:"staticController"
+});
+
+
+
+
+3. read the Data from homeService.
+
+app.service("homeService",homeService);
+homeService.$inject=["$http","$localStorage"];
+function homeService($http,$localStorage) {
+    var token = $localStorage.my_project.data.token;
+    console.log(token);
+    this.readStatic = function () {
+        return "Data from Server Soon (Static)";
+    };
+    this.readMysql = function () {
+        return "Data from Server Soon (MySQl)";
+    };
+    this.readMongo = function () {
+        return "Data from Server Soon (MongoDB)";
+    };
+}
+
+
+
+4.read the data from the server
+
+    Ex.
+
+       static.json
+
+{
+    "subjects":[
+                    {"id":1,"sub":"AngularJS","rank":1},
+                    {"id":1,"sub":"Angular2","rank":2},
+                    {"id":1,"sub":"Angular4","rank":3}
+    ]
+}
+
+server_files / static.js
+-
+var express = require("express");
+var fs = require("fs");
+var router = express.Router();
+router.get("/",function (req,res) {
+    console.log(__dirname);
+    fs.readFile("D:\\AJS_Classes\\Mini_Project\\static.json"
+        ,function (err,data) {
+      res.send(data);
+   });
+});
+module.exports=router;
+
+
+var static = require("./server_files/static");
+app.use("/static",static);
+
+
+Reading the Data from MongoDB
+-
+
+1.Create the databse.
+
+    >use project;
+
+2.Create Collection.
+
+    >db.createCollection("demo");
+
+3.Insert the Objects.
+
+    >db.demo.insert({"id":1,"name":"Hello_1","age":20});
+
+
+4.Fetch the Objects from Collection.
+
+    >db.demo.find();
+
+
+
+Reading the Data From the MySQL.
+
+
+

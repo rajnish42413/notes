@@ -1,0 +1,129 @@
+
+    - Formating the data accroding to end user requirement.
+
+    - we have two types of filters.
+
+        1.Predefined Filters
+        2.Custom Filters
+
+
+1.Predefined Filters.
+    The Filters Given By the Framework called as Predefined Filters.
+
+1.uppercase
+    used to convert the lowercase characters to uppercase.
+
+    $scope.var_one = "hello";
+
+    {{var_one}} // hello
+
+    {{var_one | uppercase }}  //HELLO
+
+
+2.lowercase
+    used to convert the uppercase letters to lowercase.
+
+    $scope.var_two = "HELLO";
+
+    {{var_two}} //HELLO
+
+    <p ng-bind="var_two | lowercase"></p>  //hello
+
+
+3.currency
+    - used to add the "$" symbol to numerical values.
+
+    $scope.var_three=100;
+
+    {{var_three}} // 100
+
+    {{var_three | currency }} // $ 100.00
+
+    {{var_three | currency : "$" : 4}} // $100.0000
+
+
+4.date
+    - used to format the date accroding to application requirement.
+
+    $scope.var_four = new Date();
+
+    {{var_four}}
+
+    {{var_four | date:'dd-MM-yy'}}
+    {{var_four | date:'dd/MM/yy'}}
+    {{var_four | date:'MM/dd/yyyy'}}
+    {{var_four | date:'short'}}
+    {{var_four | date:'medium'}}
+    {{var_four | date:'fullDate'}}
+
+        --
+        --
+        --
+
+5. limitTo.
+        - used to bind the number of records by using two way data binding.
+
+6. orderBy.
+        - used to arrange the data either assending / decending order.
+
+7.filter
+        - used to filter the data based on user input.
+
+
+$scope.var_five  = [{id:1,name:"Hello_1",age:20},
+                    {id:5,name:"Hello_5",age:28},
+                    {id:2,name:"Hello_2",age:22},
+                    {id:4,name:"Hello_4",age:26},
+                    {id:3,name:"Hello_3",age:24}];
+
+                    <input type="text" ng-model="search">
+                    <table border="1">
+                        <tr>
+                            <th>id</id>
+                            <th>name</th>
+                            <th>age</th>
+                        </tr>
+                        <tr ng-repeat="x in var_five | orderBy:'id' | limitTo:3 | filter:search">
+                            <td>{{x.id}}</td>
+                            <td>{{x.name}}</td>
+                            <td>{{x.age}}</td>
+                        </tr>
+                    </table>
+
+Custom Filter.
+    - Creating our own filter called as Custom Filter.
+
+
+{{"hello" | reverse }}
+
+
+
+app.filter("reverse" , reverse);
+
+function reverse(){
+    return function(arg1){
+        var data="";
+        for(var i=0;i<arg1.length;i++){
+            data=arg1[i]+data;
+        }
+        return data;
+    }
+}
+
+
+-------------------------------------
+{{100 | my_curreny:"₹":true}}   //₹ 100
+
+{{100 | my_curreny:"₹":false}}   // 100 ₹
+
+app.filter("my_currency" , my_currency);
+function my_currency(){
+    return function(amount,symbol,position){
+        if(position){
+            return symbol+amount;
+        }else{
+            return amount+symbol;
+        }
+    }
+}
+---------------------------------------

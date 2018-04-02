@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app" ng-controller="ctrl">
+
+   <table class="table table-bordered">
+        <tr>
+            <th>Name</th>
+            <th>City</th>
+            <th>Country</th>
+        </tr>
+
+        <tr ng-repeat="x in var_one">
+            <td>{{x.Name}}</td>
+            <td>{{x.City}}</td>
+            <td>{{x.Country}}</td>
+        </tr>
+    </table>
+
+
+
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script>
+        //Instantiate the Module
+        var app = angular.module("app",[]);
+
+        //Create the service.
+        app.service("my_service",my_service);
+        my_service.$inject=["$http"];
+        function my_service($http) {
+            this.my_fun = function () {
+                return $http.get("/read").then(function (res) {
+                    return res.data.records;
+                });
+            };
+        };
+
+        //implement the controller
+        app.controller("ctrl",ctrl);
+        ctrl.$inject=["$scope","my_service"];
+        function ctrl($scope,my_service) {
+          my_service.my_fun().then(function (res) {
+             $scope.var_one=res;
+          });
+        };
+    </script>
+
+
+</html>

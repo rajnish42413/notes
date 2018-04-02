@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+    <div ng-controller="parent_controller">
+        <h1 style="color: red" ng-bind="var_one"></h1>
+        <div ng-controller="child_one">
+            <button ng-click="clickMe('For Parent Controller')">Click Me</button>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.min.js"></script>
+    <script>
+        angular.module("app",[]).controller("child_one",function ($scope) {
+            $scope.clickMe = function (data) {
+              $scope.$emit("key1",data);
+            };
+        }).controller("parent_controller",function ($scope) {
+           $scope.$on("key1",function (event,res) {
+              $scope.var_one=res;
+           });
+        });
+    </script>
+</html>

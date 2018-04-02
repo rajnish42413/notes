@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app" ng-controller="ctrl">
+
+    <h1 style="color: red" ng-bind="var_one"></h1>
+
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script>
+        var app = angular.module("app",[]);
+        app.controller("ctrl",ctrl);
+        ctrl.$inject=["$scope"];
+        function ctrl($scope) {
+            $scope.var_one="First Angular Application with Node Application";
+        }
+    </script>
+</html>

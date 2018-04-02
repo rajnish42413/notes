@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+
+    <h1>{{"hello" | reverse}}</h1>
+    <h1>{{"This is Reverse Filter in AngularJS" | reverse}}</h1>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.min.js"></script>
+    <script>
+        var app = angular.module("app",[]);
+
+        app.filter("reverse" ,reverse);
+        function reverse() {
+            return function(arg1){
+                var data="";
+                for(var i=0;i<arg1.length;i++){
+                    data=arg1[i]+data;
+                }
+                return data;
+            }
+        }
+    </script>
+</html>

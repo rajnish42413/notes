@@ -1,0 +1,149 @@
+NodeJS.
+
+    - NodeJS is Server Side Scripting Language.
+
+    - By using NodeJS We Can Create both http & tcp servers
+
+    - As a Node Developer we can Assign the Port Numbers to the Servers.
+
+    - Providing the Communication Between Different Technologies Called As Restful Services.
+
+    - Node Have a So Many Predefined Modules, As a Node Developer we can use the Predefined Modules.
+
+    1.http
+
+        used to create the http servers
+
+    2.fs
+
+        fs stands for file system
+        fs module used to read the Data From the Static Files
+        Ex.
+            Static Text Files
+
+            Static XML Files
+
+            Static JSON Files
+
+                --
+                --
+                --
+
+    - As a Developer we can use the 3rd patry Modules to develop Node Applications.
+
+    1.express.
+
+        - used to develop the restful services.
+
+    2.body-parser.
+
+        - used to set the MIME Type.
+
+    3.connect.
+
+        - used to establish the connection between Front End Technologies to the Node Server.
+
+    4.mysql
+
+        - used to connect to MySQL DataBase.
+
+    5.mongodb
+
+          - used to connect to MongoDB
+
+    6.jwt-simple
+
+        - used to maintain the secuirity while intercating with the Front End Technologies.
+
+Example_1.
+
+           Launch the Angular Application By Using Node Server.
+
+-------------------
+Day@21
+
+    Node_BasicExample  (Project)
+
+        bower.json     (Angular Resources)
+
+        .bowerrc.json  (Path Indicating for bower components)
+
+        index.html     (Angular Application)
+
+        package.json   (Node Resources)
+
+        server.js      (Node Application)
+
+---------------------
+
+package.json
+-
+{
+    dependencies:{
+
+        "express":"~4.11.1"
+    }
+
+}
+
+
+npm install
+
+server.js
+-
+//import the express
+var express = require("express");
+
+//Create the Server
+var app=express();
+
+//AngularApplication(Folder)   --- Node Server Instance.
+app.use(express.static(__dirname+"/../Node_BasicExample));
+
+//Launch the Angular Application.
+app.get("/" , function(req,res){
+    res.redirect("/index.html");
+});
+
+//Assign the Port Number.
+app.listen(8080);
+console.log("Server Listening the Port No.8080");
+
+-----------------
+Start the Server.
+
+npm start
+-----------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

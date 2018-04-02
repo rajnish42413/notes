@@ -1,0 +1,171 @@
+Custom Directives.
+
+    - Creating our own directive based on Application Requirement called as Custom Directive.
+    - we can use Custom Directives in 3 ways.
+        1.Element
+        2.Attribute
+        3.CSS Class
+
+    Ex.
+
+        name of the custom directive  --- "my_directive"
+
+        <my_directive></my_directive>  --- Element
+
+        <h1 my_directive></div>        --- Attribute
+
+        <h1 class="my_directive">      --- CSS Class
+
+Properties of Custom Directives.
+
+1.restrict
+
+    used to describe usage of custom directive.
+
+Ex.
+    app.directive("my_directive",my_directive);
+
+    function my_directive(){
+        return{
+            restrict:'EAC'
+        }
+    }
+
+2.template
+
+    - used to add the HTML to the Custom Directive.
+
+Ex.
+    app.directive("my_directive" , my_directive);
+    function my_directive(){
+        return{
+            restrict:'A',
+            template:'<b>Welcome to Custom Directives</b>'
+        }
+    }
+
+<h1 my_directive></h1>   //Welcome to Custom Directives
+
+
+3.templateUrl.
+
+    - used to link the external template to the custom directive.
+
+-------------
+     templates
+        sample.html
+--------------
+
+sample.html
+-
+<b>Welcome to Custom Directives</b>
+
+app.directive("exampleDirective",exampleDirective);
+function exampleDirective(){
+    return{
+        restrict:"E",
+        templateUrl:"templates/sample.html"
+    }
+}
+
+<example-directive></example-directive>  //Welcome to Custom Directives
+
+
+4.controller
+
+    used to define the controller to the template of a custom directive.
+
+    -------------
+    templates
+        sample.html
+    --------------
+
+    sample.html
+    -
+    {{var_one}}
+
+
+    --------------
+    controllers
+            ctrl.js
+    ---------------
+
+
+    app.controller("ctrl" , ctrl);
+    ctrl.$inject=["$scope"];
+    function ctrl($scope){
+        $scope.var_one = "Welcome to Custom Directives."
+    }
+
+    app.directive("examDir",examDir);
+    function examDir(){
+        return{
+            restrict:'E',
+            templateUrl:'templates/sample.html',
+            controller:'ctrl'
+        }
+    }
+    <exam-dir></exam-dir> //Welcome to Custom Directives.
+
+    *******************************
+Example_2
+    templates
+           header.html
+
+    controllers
+            header.js
+
+    directives
+            header.js
+
+    index.html
+
+    app.js
+   **********************************
+
+   header.html
+   -
+   <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle"
+                data-toggle="dropdown">Click Here</button>
+
+        <ul class="dropdown-menu">
+            <li>About</li>
+            <li>Home</li>
+            <li>Portfolio</li>
+            <li ng-click="logout()">Logout</li>
+        </ul>
+   </div>
+
+
+    controllers / header.js
+    -
+    app.controller("header" , header);
+    header.$inject=["$scope"];
+    function header($scope){
+        $scope.logout = function(){
+             console.log("Logged Out Successfully !");
+        }
+    }
+
+
+    Directives / header.js
+    -
+    app.directive("header" , header);
+    function header(){
+        return{
+            restrict:"E",
+            templateUrl:"templates/header.html",
+            controller:"header"
+        }
+    }
+
+    index.html
+    -
+
+    <header></header>
+
+
+
+
+

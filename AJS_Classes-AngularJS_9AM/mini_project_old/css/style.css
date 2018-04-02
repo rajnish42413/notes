@@ -1,0 +1,51 @@
+.p20{padding: 20px;}
+.user-image {
+    float: left;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    margin-right: 10px;
+    margin-top: -2px;
+}
+li.user-header {
+    height: 175px;
+    padding: 10px;
+    text-align: center;background-color: #3c8dbc;
+}
+li.user-header>img {
+    z-index: 5;
+    height: 90px;
+    width: 90px;
+    border: 3px solid;
+    border-color: transparent;
+    border-color: rgba(255,255,255,0.2);
+}
+.user-body {
+    padding: 15px;
+    border-bottom: 1px solid #f4f4f4;
+    border-top: 1px solid #dddddd;
+}
+.navbar-nav>.user-menu>.dropdown-menu>.user-footer {
+    background-color: #f9f9f9;
+    padding: 10px;
+}
+.top-navbar {
+        border-bottom: 1px solid #EEE;
+    box-shadow: 0 0 15px rgba(0, 0, 0, .065);
+    padding: 14px 20px;
+    width: 100%;
+    height: 53px;
+}
+.top-navbar .user-menu{float: right;}
+.top-navbar .dropdown-menu {
+    position: absolute;
+    right: 0;
+    left: auto;
+}
+.user-menu>.dropdown-menu {
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+    padding: 1px 0 0 0;
+    border-top-width: 0;
+    width: 280px;
+}

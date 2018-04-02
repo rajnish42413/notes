@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+
+    <div class="container" attr-type></div> // Attribute Usage
+
+    <br><br>
+    <div class="container class-type"></div>  // Class Usage
+
+    <br><br>
+    <div class="container">
+        <elem-type></elem-type>              // Element Usage
+    </div>
+    <script src="../bower_components/angular/angular.min.js"></script>
+    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <script>
+        var app = angular.module("app",[]);
+        app.directive("attrType",attrType);
+        function attrType() {
+            return{
+                restrict:'A',
+                template:"<div class='jumbotron'><b><font color='red'>This is Attrubute Type Custom Directive</font></b></div>"
+            }
+        }
+
+
+
+        app.directive("classType",classType);
+        function classType() {
+            return{
+                restrict:'C',
+                template:"<div class='jumbotron'><b><font color='green'>This is Class Type Custom Directive</font></b></div>"
+            }
+        }
+
+
+
+        app.directive("elemType",elemType);
+        function elemType() {
+            return{
+                restrict:'E',
+                template:"<div class='jumbotron'><b><font color='blue'>This is Element Type Custom Directive</font></b></div>"
+            }
+        }
+    </script>
+</html>

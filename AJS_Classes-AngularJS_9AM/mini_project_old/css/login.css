@@ -1,0 +1,10 @@
+body{background: #f7f7f7;}
+form.form-horizontal {
+    max-width: 350px;
+    margin: 0px auto;
+    padding-top: 100px;
+}
+.register{max-width: 100% !important;
+    padding-top: 50px !important;}
+.form-horizontal .form-group{margin-left: 0;margin-right: 0}
+.mnone{margin: 0;}
