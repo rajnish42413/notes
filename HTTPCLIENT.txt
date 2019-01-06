@@ -1,0 +1,58 @@
+				**** HttpClient ****
+
+	- HttpClient introduced in Angular4.x.
+
+	- HttpClient Eazy to Use Comapared to Http.
+
+	- HttpClient Applications are More Tastable Applications Compared to Http.
+
+	- HttpClient Applications are more deguggable Applications Compared to Http.
+
+	- Application Performance will be Improved.
+
+	- HttpClient Supports the Interceptors.
+
+	- HttpClient used to connect to servers via Http Protocol.
+
+	- HttpClient will convert the Response to JSON Format Automatically.
+
+	- HttpErrorResponse Used to Categorize the Errors.
+
+	- HttpClient present in HttpClientModule.
+
+	- HttpClient, HttpClientModule, and HttpErrorResponse Present in 
+	  @angular/common/http module.
+
+
+Interceptors:
+-------------
+	- Interceptors are used to filter the Http Req's before Hitting
+	  Server.
+
+	- Interceptors are used to validate the Req's Before Hitting the
+	  Server.
+
+	- "HttpInterceptor" is the interface used to implement the Interceptors.
+
+	- intercept() is the unimplemented method in Interface.
+
+	- intercept() used to validate the request's.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
