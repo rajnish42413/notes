@@ -37,6 +37,77 @@ Interceptors:
 	- intercept() is the unimplemented method in Interface.
 
 	- intercept() used to validate the request's.
+	
+Component:-
+-----------
+  GET :-
+  ----
+import { Component } from "@angular/core";
+import { CountriesService } from "../services/countries.service";
+import { HttpErrorResponse } from "@angular/common/http";
+@Component({
+    selector:"angular4",
+    templateUrl:"./countries.component.html"
+})
+export class CountriesComponent{
+    private result:any;
+    constructor(private _service:CountriesService){
+    }
+    ngOnInit(){
+        this._service.getCountries().subscribe(res=>{
+            this.result = res;
+        },(err:HttpErrorResponse)=>{
+            if(err.error instanceof Error){
+                console.log("Client Side Error !");
+            }else{
+                console.log("Server Side Error !");
+            }
+        });
+    }
+}
+
+ POST :-
+ ------
+  public clickMe(obj:any):any{
+        this._service.convertToUpperCase(obj).subscribe(res=>{
+            this.result = res;
+        },(err:HttpErrorResponse)=>{
+            if(err.error instanceof Error){
+                console.log("Client Side Error !");
+            }else{
+                console.log("Server Side Error !");
+            }
+        });
+    }
+    
+    
+SERVICES :-
+---------------
+ POST :-
+ -------
+ import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+@Injectable()
+export class UppercaseService{
+    constructor(private _http:HttpClient){
+    }
+    public convertToUpperCase(obj:any):any{
+       return this._http.post("http://test-routes.herokuapp.com/test/uppercase",obj); 
+    }
+} 
+
+GET :-
+------
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+@Injectable()
+export class CountriesService{
+    constructor(private _http:HttpClient){
+    }
+    getCountries():any{
+        return this._http.get("https://restcountries.eu/rest/v2/all");
+    }
+}
 
 
 
